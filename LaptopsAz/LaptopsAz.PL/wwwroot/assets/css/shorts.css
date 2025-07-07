@@ -1,0 +1,337 @@
+
+
+
+
+#liveSearchResults {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #e0e6ed; /* Daha yumşaq border rəngi */
+    border-top: none; /* Axtarış qutusu ilə birləşməsi üçün */
+    max-height: 350px;
+    overflow-y: auto;
+    width: 100%; /* Valideyn elementin enini tam tutsun */
+    z-index: 1000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* Daha dərin və yayılmış kölgə */
+    border-radius: 0 0 8px 8px; /* Alt küncləri daha çox yumşaltmaq */
+    margin-top: 0; /* Axtarış qutusu ilə tam birləşsin */
+    box-sizing: border-box;
+    /* display: none; JavaScript tərəfindən idarə olunur, amma ilkin olaraq HTML-də və ya burada da ola bilər */
+}
+
+/* Scrollbar stilləri (Webkit brauzerləri üçün) */
+#liveSearchResults::-webkit-scrollbar {
+    width: 6px;
+}
+#liveSearchResults::-webkit-scrollbar-track {
+    background: #f7f7f7;
+    border-radius: 10px;
+}
+#liveSearchResults::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+}
+#liveSearchResults::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}
+
+/* Scrollbar stilləri (Firefox üçün) - incə */
+#liveSearchResults {
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc #f7f7f7;
+}
+
+
+#liveSearchResults ul {
+    list-style-type: none;
+    padding: 5px 0; /* Üst və alt padding */
+    margin: 0;
+}
+
+#liveSearchResults ul li.live-search-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; /* İç boşluqları artırdım */
+    border-bottom: 1px solid #f2f5f8; /* Çox incə ayırıcı xətt */
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease-out; /* Transform da əlavə etdim */
+}
+
+#liveSearchResults ul li.live-search-item:last-child {
+    border-bottom: none;
+}
+
+#liveSearchResults ul li.live-search-item:hover {
+    background-color: #f0f5fa; /* Daha müasir hover rəngi */
+    /* transform: translateX(3px);  Yüngül sağa sürüşmə effekti (istəyə bağlı) */
+}
+
+.live-search-item-image {
+    width: 55px;  /* Şəkil ölçüsünü bir az artırdım */
+    height: 55px;
+    object-fit: cover;
+    margin-right: 15px; /* Məsafəni artırdım */
+    border-radius: 6px; /* Daha yumşaq künclər */
+    border: 1px solid #e9e9e9; /* İncə çərçivə */
+    transition: transform 0.25s ease; /* Hover üçün şəkilə animasiya */
+}
+
+#liveSearchResults ul li.live-search-item:hover .live-search-item-image {
+    transform: scale(1.05); /* List item-in üzərinə gəldikdə şəkil böyüsün */
+}
+
+.live-search-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Məzmunu şaquli mərkəzə yaxınlaşdırır */
+    flex-grow: 1;
+    overflow: hidden; /* Uzun mətnlərin kəsilməməsi üçün */
+}
+
+.live-search-item-name {
+    font-weight: 600;
+    font-size: 15px; /* Yazı ölçüsünü bir az artırdım */
+    color: #2c3e50; /* Müasir tünd rəng */
+    margin-bottom: 5px; /* Məsafəni artırdım */
+    white-space: nowrap; /* Adın bir sətirdə qalması */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Uzun adlar üçün ... göstər */
+    line-height: 1.3; /* Sətir hündürlüyü */
+}
+
+.live-search-item-price {
+    font-size: 14px; /* Yazı ölçüsünü bir az artırdım */
+    color: #27ae60; /* Müasir yaşıl rəng (məsələn) */
+    /* Alternativ olaraq istifadə edə biləcəyiniz rənglər: */
+    /* color: #007bff; */ /* Əvvəlki mavi */
+    /* color: #e74c3c; */ /* Qırmızıya çalan ton */
+    /* color: #8e44ad; */ /* Bənövşəyi */
+    font-weight: 500; /* Orta qalınlıq */
+    line-height: 1.3;
+}
+
+#liveSearchResults ul li.no-results {
+    padding: 15px; /* Boşluğu artırdım */
+    color: #868e96; /* Daha yumşaq rəng */
+    text-align: center;
+    font-style: italic; /* Kursiv yazı */
+    cursor: default;
+}
+#liveSearchResults ul li.no-results:hover {
+    background-color: transparent; /* Hover effekti olmasın */
+}
+
+.shorts-section-container {
+    max-width: 1200px; /* Maksimum en */
+    margin: 40px auto 40px auto; /* Yuxarıdan və aşağıdan 40px məsafə, yanlardan avtomatik mərkəzləmə */
+    background-color: #ffffff;
+    padding: 30px; /* İç boşluqlar */
+    border-radius: 12px; /* Daha yumşaq künclər */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Daha dərin kölgə */
+}
+
+/* === Başlıq Stilləri === */
+.gallery-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* Başlıq ilə qalereya arası məsafə */
+}
+
+.gallery-title-line {
+    width: 6px; /* Xəttin qalınlığı */
+    height: 30px; /* Xəttin hündürlüyü */
+    background-color: #0d6efd; /* Bootstrap mavisinə bənzər bir ton */
+    margin-right: 15px; /* Xətt ilə yazı arası məsafə */
+    border-radius: 3px;
+}
+
+.gallery-title-text {
+    font-size: 28px; /* Başlıq yazısının ölçüsü */
+    font-weight: 700;
+    color: #212529; /* Daha standart tünd rəng */
+    margin: 0;
+}
+
+/* === Ümumi Qalereya Stilləri === */
+.shorts-gallery {
+    position: relative;
+    width: 100%;
+}
+
+.shorts-container {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.shorts-wrapper {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.short-item {
+    /* === Yenilənmiş Desktop Ölçüləri (YouTube player üçün daha uyğun) === */
+    width: 240px;
+    height: 427px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    background-color: #000000; /* iframe arxası üçün qara fon */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+.short-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.short-item:last-child {
+    margin-right: 0;
+}
+
+/* === IFRAME üçün Stil === */
+.short-item iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.short-item .short-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 20px 12px 10px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* === Naviqasiya Düymələri === */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: #343a40;
+    border: 1px solid #dee2e6;
+    padding: 0;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transition: all 0.25s ease;
+}
+.nav-btn:hover:not(:disabled) {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-50%) scale(1.08);
+    border-color: #ced4da;
+}
+
+.prev-btn {
+    left: -22px;
+}
+
+.next-btn {
+    right: -22px;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #e9ecef;
+    box-shadow: none;
+    transform: translateY(-50%) scale(1);
+}
+
+/* === Mobil Cihazlar üçün Responsiv Stillər === */
+@media (max-width: 768px) { /* Planşetlər və böyük telefonlar */
+    .shorts-section-container {
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .gallery-title-text {
+        font-size: 24px;
+    }
+    .gallery-title-line {
+        height: 26px;
+    }
+
+    .shorts-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 15px;
+        margin-left: -15px;
+        margin-right: -15px;
+        transform: none !important;
+        scrollbar-width: none;
+    }
+    .shorts-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .short-item {
+        /* Mobil Ölçüləri (Tablet/Böyük Telefon) */
+        width: 90vw;
+        max-width: 380px;
+        height: auto;
+        aspect-ratio: 9 / 16;
+        max-height: 500px;
+        margin-right: 15px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+    .short-item:hover {
+        transform: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .nav-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) { /* Kiçik Telefonlar */
+    .gallery-title-text {
+        font-size: 22px;
+    }
+    .gallery-title-line {
+        height: 24px;
+    }
+    .shorts-wrapper {
+        padding: 0 10px;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .short-item {
+        /* Mobil Ölçüləri (Kiçik Telefon) */
+        width: 92vw;
+        max-width: none;
+        aspect-ratio: 9 / 16;
+        max-height: 480px;
+        margin-right: 12px;
+    }
+}

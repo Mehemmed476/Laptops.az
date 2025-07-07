@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>Səbət</value>
+  </data>
+  <data name="Text2" xml:space="preserve">
+    <value>Sifariş</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>Sifariş Detalları</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>Şəhər</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Küçə</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Mobil Nömrə</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Məhsul</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Qiymət</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Say</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Ümumi</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Sifarişi Tamamla</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Əlaqə Məlumatları</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>Əlavə Qeyd</value>
+  </data>
+  <data name="Text18" xml:space="preserve">
+    <value>Sifariş haqqında əlavə qeydlər</value>
+  </data>
+  <data name="Text19" xml:space="preserve">
+    <value>Sifariş Et</value>
+  </data>
+</root>

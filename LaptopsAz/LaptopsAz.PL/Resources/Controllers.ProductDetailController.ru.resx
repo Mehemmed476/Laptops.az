@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Добавить в корзину</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Добавить комментарий</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Отправлять</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Новые продукты</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Узнавайте первыми о последних предложениях.</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>Зарегистрируйте свой номер мобильного телефона</value>
+  </data>
+</root>

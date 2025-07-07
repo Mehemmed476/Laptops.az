@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text2" xml:space="preserve">
+    <value>Заказ</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>Подробности заказа</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Номер мобильного телефона</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Число</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Общий</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Контактная информация</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>Дополнительное примечание</value>
+  </data>
+  <data name="Text18" xml:space="preserve">
+    <value>Дополнительные примечания к заказу</value>
+  </data>
+  <data name="Text19" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
+  <data name="Text1" xml:space="preserve">
+    <value>Корзина</value>
+  </data>
+</root>

@@ -1,0 +1,517 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+@{
+    var currentUrl = Context.Request.Path.ToString().ToLower();
+    bool isHomePage = currentUrl == "/" || currentUrl == "/home" || currentUrl == "/home/index";
+    bool isShopPage = currentUrl.StartsWith("/shop");
+    bool isAboutPage = currentUrl.Contains("/aboutus");
+    bool isContactPage = currentUrl.Contains("/contact");
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="laptops.az" />
+    @RenderSection("meta", required: false)
+    @if (isHomePage)
+    {
+        <title>laptops.az - Azərbaycanda 1 nömrəli laptop mağazası</title>
+        <meta name="description" content="Bakıda və Azərbaycanda ən keyfiyyətli və ucuz laptoplar - yalnız laptops.az saytında!" />
+        <meta name="keywords" content="laptop, laptops.az, ucuz laptop, notebook, oyun laptopu, biznes laptop, Bakı" />
+        <meta property="og:title" content="laptops.az - Azərbaycanda #1 laptop mağazası" />
+        <meta property="og:description" content="Orijinal və zəmanətli laptopları ən yaxşı qiymətlərlə alın." />
+        <meta property="og:image" content="@(Url.Content("~/images/seo/home-banner.jpg"))" />
+    }
+    else if (isShopPage)
+    {
+        <title>Laptoplar | laptops.az</title>
+        <meta name="description" content="ASUS, Lenovo, HP və digər markalardan sərfəli qiymətlərlə laptoplar. Tələbəyə, ofisə, oyuna uyğun modellər." />
+        <meta name="keywords" content="laptoplar, ucuz laptop, Bakı laptop mağazası, oyun laptopu, tələbə laptopu, laptops.az" />
+        <meta property="og:title" content="Laptoplar | laptops.az" />
+        <meta property="og:description" content="Ən yeni və sərfəli laptop modelləri laptops.az saytında." />
+        <meta property="og:image" content="@(Url.Content("~/images/seo/shop-banner.jpg"))" />
+    }
+    else if (isAboutPage)
+    {
+        <title>Haqqımızda | laptops.az</title>
+        <meta name="description" content="laptops.az — Azərbaycanda laptop satışında lider. Bizim haqqımızda ətraflı məlumat üçün bu səhifəyə baxın." />
+        <meta name="keywords" content="laptops.az haqqımızda, laptop mağazası, kompüter satışı, texnologiya şirkəti" />
+        <meta property="og:title" content="Haqqımızda | laptops.az" />
+        <meta property="og:description" content="laptops.az – keyfiyyət, etibar və sərfəli qiymət prinsipləri ilə fəaliyyət göstərir." />
+        <meta property="og:image" content="@(Url.Content("~/images/seo/about.jpg"))" />
+    }
+    else if (isContactPage)
+    {
+        <title>Əlaqə | laptops.az</title>
+        <meta name="description" content="Bizimlə əlaqə saxlamaq üçün telefon nömrəmiz, e-mail və ünvan məlumatlarımız buradadır." />
+        <meta name="keywords" content="əlaqə, laptops.az, bizimlə əlaqə, laptop mağazası əlaqə, kompüter satış əlaqə" />
+        <meta property="og:title" content="Əlaqə | laptops.az" />
+        <meta property="og:description" content="laptops.az ilə əlaqə saxlamaq üçün məlumatlar." />
+        <meta property="og:image" content="@(Url.Content("~/images/seo/contact.jpg"))" />
+    }
+    else
+    {
+        <title>laptops.az</title>
+        <meta name="description" content="laptops.az saytında zəmanətli, orijinal və sərfəli qiymətli laptoplar." />
+        <meta name="keywords" content="laptop, notebook, ucuz laptoplar, texnologiya, elektronika, laptops.az" />
+        <meta property="og:title" content="laptops.az - Laptoplar və Elektronika Məhsulları" />
+        <meta property="og:description" content="Laptop, notebook və digər texnologiya məhsullarını rəsmi zəmanətlə alın." />
+        <meta property="og:image" content="@(Url.Content("~/images/logo.png"))" />
+    }
+
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+    <meta property="og:image" content="Url.Content(~/images/logo.png))" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="canonical" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+    <link rel="shortcut icon" href="~/assets/images/Laptops.az-Logo.png">
+
+    <!-- fraimwork - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+
+    <!-- icon font - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/stroke-gap-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/icofont.css">
+
+    <!-- animation - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+
+    <!-- carousel - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick-theme.css">
+
+    <!-- popup - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+
+    <!-- jquery-ui - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery-ui.css">
+
+    <!-- select option - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/nice-select.css">
+
+    <!-- custom - css include -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/shorts.css">
+    <style>
+        .contact_card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            max-width: 900px; /* genişliği artırdım */
+            width: 480px;      /* mümkün olan tam genişlik */
+            padding: 20px 50px; /* yan padding biraz daha artırıldı */
+            box-sizing: border-box;
+        }
+
+        .contact_title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px; /* alt boşluk azaltıldı */
+            color: #0071f8;
+            border-bottom: 2px solid #0071f8;
+            padding-bottom: 6px;
+        }
+
+        .contact_details li {
+            font-size: 18px;
+            margin-bottom: 10px; /* alt boşluk azaltıldı */
+            line-height: 1.1; /* satır yüksekliği azaltıldı */
+            display: flex;
+            align-items: center;
+        }
+
+        .contact_details li .icon {
+            font-size: 22px;
+            margin-right: 12px;
+            color: #0071f8;
+            flex-shrink: 0;
+        }
+
+        .contact_details li b {
+            color: #252525;
+            font-weight: 600;
+        }
+        .error_section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #0071f8, #00c6ff);
+            color: #fff;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            padding: 60px 15px;
+        }
+
+        .error_content h1 {
+            font-size: 150px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -10px;
+            text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .error_content h1 span {
+            color: #fff;
+            background: #000;
+            padding: 0 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .error_content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #f9f9f9;
+        }
+
+        .error_content p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .error_content a {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #fff;
+            color: #0071f8;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .error_content a:hover {
+            background-color: #0071f8;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- body_wrap - start -->
+<div class="body_wrap">
+
+    <!-- backtotop - start -->
+    <div class="backtotop">
+        <a href="#" class="scroll">
+            <i class="far fa-arrow-up"></i>
+        </a>
+    </div>
+    <!-- backtotop - end -->
+
+    <!-- preloader - start -->
+    <div id="preloader"></div>
+    <!-- preloader - end -->
+
+    <!-- header_section - start
+    ================================================== -->
+    <header class="header_section">
+        <div class="header_top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col col-md-6">
+                        <ul class="header_select_options ul_li">
+                            <li>
+                                <form id="cultureForm" method="post" asp-controller="Home" asp-action="SetLanguage">
+                                    <div class="select_option" style="width: 150px; display: flex; align-items: center; gap: 6px;">
+                                        <div class="flug_wrap" style="display: flex; align-items: center;">
+                                            <img src="@Url.Content("~/assets/images/flug/azerbaijan.png")" asp-append-version="true" id="langFlag" alt="Language Flag" style="width: 20px; height: auto;">
+                                        </div>
+                                        <select name="culture" onchange="updateFlag(); document.getElementById('cultureForm').submit();"
+                                                style="border: none; background: transparent; font-size: 14px; padding: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;">
+                                            <option value="az" selected="@(CultureInfo.CurrentCulture.Name == "az")">Azərbaycan</option>
+                                            <option value="ru" selected="@(CultureInfo.CurrentCulture.Name == "ru")">Rus Dili</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col col-md-6">
+                        <p class="header_hotline">@Localizer["Text16"] <strong>+994 (070) 815 1283</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_middle">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col col-lg-3 col-5">
+                        <div class="brand_logo">
+                            <a class="brand_link" asp-controller="Home" asp-action="Index">
+                                <img src="~/assets/images/Laptops.az-Logo-removebg-preview.png" alt="Getyootech - Gadgets Ecommerce Site Template">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col col-lg-6 col-2">
+                        <nav class="main_menu navbar navbar-expand-lg">
+                            <div class="main_menu_inner collapse navbar-collapse justify-content-center" id="main_menu_dropdown">
+                                <ul class="main_menu_list ul_li">
+                                    <li>
+                                        <a class="nav-link" asp-controller="Home" asp-action="Index" id="home_submenu" role="button">@Localizer["Text17"]</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" asp-controller="Shop" asp-action="Index" id="shop_submenu" role="button">@Localizer["Text11"]</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" asp-controller="AboutUs" asp-action="Index" id="pages_submenu" role="button">@Localizer["Text7"]</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Contact" asp-action="Index">@Localizer["Text15"]</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="col col-lg-3 col-5">
+                        <ul class="header_icons_group ul_li_right">
+                            <li>
+                                <button class="mobile_menu_btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_menu_dropdown" aria-controls="main_menu_dropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fal fa-bars"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/laptops.az/" target="_blank" title="Instagram" style="color: #0071f8;">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/profile.php?id=61555413308599" target="_blank" title="Facebook" style="color: #0071f8;">
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col col-md-3 col-6">
+                        <div class="allcategories_dropdown">
+                            <button class="allcategories_btn" type="button" data-bs-toggle="collapse" data-bs-target="#allcategories_collapse" aria-expanded="false" aria-controls="allcategories_collapse">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="13" viewBox="0 0 15 13">
+                                    <image width="15" height="13" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAANAgMAAAALcNzSAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX+//3+//0AAABvRd2oAAAAAXRSTlMAQObYZgAAAAFiS0dEAmYLfGQAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQflBwIBIhVZ2fz2AAAAGUlEQVQI12MIDQ0NYQATaAAshEUcJgvVBgDy4QdJZv6kzwAAAABJRU5ErkJggg=="/>
+                                </svg>
+                                @Localizer["Text9"]
+                            </button>
+                            <div class="allcategories_collapse collapse" id="allcategories_collapse">
+                                <div class="card card-body">
+                                    <ul class="allcategories_list ul_li_block">
+                                        @await Component.InvokeAsync("Category")
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-md-6">
+                        <form autocomplete="off" id="searchForm" action="#">
+                            <div class="advance_serach" style="position:relative;">
+                                <div class="form_item">
+                                    <input type="search" id="searchInput" name="search" placeholder="@Localizer["Text2"]..." autocomplete="off">
+                                </div>
+                                <button type="submit" class="search_btn"><i class="far fa-search"></i></button>
+                                <div id="liveSearchResults" style="display:none;">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col col-md-3 col-6">
+                        <a asp-controller="Cart" asp-action="Index" type="button" class="cart_btn">
+                              <span class="cart_icon">
+                                <i class="icon icon-ShoppingCart"></i>
+                              </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header_section - end
+    ================================================== -->
+
+    <!-- main body - start
+    ================================================== -->
+@RenderBody()
+    <!-- footer_section - start
+    ================================================== -->
+    <footer class="footer_section">
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col col-md-6">
+                        <p class="copyright_text">
+                            © 2025 <u>Laptops.az</u> @Localizer["Text5"]
+                        </p>
+                    </div>
+
+                    <div class="col col-md-6">
+                        <div class="payment_method">
+                            <h4>@Localizer["Text16"] +994 (070) 815 1283</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer_section - end
+    ================================================== -->
+
+</div>
+<!-- body_wrap - end -->
+
+<!-- fraimwork - jquery include -->
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/popper.min.js"></script>
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/bootstrap5-dropdown-ml-hack.js"></script>
+
+<!-- carousel - jquery include -->
+<script src="~/assets/js/slick.min.js"></script>
+
+<!-- popup - jquery include -->
+<script src="~/assets/js/magnific-popup.min.js"></script>
+
+<!-- jquery-ui - jquery include -->
+<script src="~/assets/js/jquery-ui.js"></script>
+
+<!-- off canvas sidebar - jquery include -->
+<script src="~/assets/js/mCustomScrollbar.js"></script>
+
+<!-- select option - jquery include -->
+<script src="~/assets/js/nice-select.min.js"></script>
+
+<!-- countdown timer - jquery include -->
+<script src="~/assets/js/countdown.js"></script>
+
+<!-- counter up - jquery include -->
+<script src="~/assets/js/counterup.min.js"></script>
+<script src="~/assets/js/waypoints.min.js"></script>
+
+<!-- custom - jquery include -->
+<script src="~/assets/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#searchInput").on("input", function () {
+            var query = $(this).val().trim();
+            var resultsDiv = $("#liveSearchResults"); // resultsDiv-i burada təyin edək
+
+            if (query.length < 2) { // Axtarış üçün minimum simvol sayı
+                resultsDiv.stop(true, true).fadeOut('fast', function() { $(this).empty(); }); // Yumşaq gizlət və təmizlə
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("LiveSearch", "Shop")', // Controller və Action adlarınızı yoxlayın
+                type: 'GET',
+                data: { searchTerm: query },
+                success: function (data) {
+                    // resultsDiv artıq yuxarıda təyin edilib
+                    if (!data || data.length === 0) {
+                        resultsDiv.html("<ul><li class='no-results'>Məhsul tapılmadı</li></ul>").stop(true, true).fadeIn('fast');
+                        return;
+                    }
+
+                    var html = "<ul>";
+                    data.forEach(function (item) {
+                        // Şəkil URL-ni yoxlayın, əgər yoxdursa standart şəkil istifadə edin
+                        var imageUrl = item.imageUrl ? item.imageUrl : '/images/default-product-image.png'; // Bu yolu öz standart şəklinizə dəyişin
+
+                        // Qiyməti formatlayın (NaN olmaması üçün yoxlama əlavə edə bilərsiniz)
+                        var priceValue = parseFloat(item.price);
+                        var formattedPrice = !isNaN(priceValue) ? priceValue.toFixed(2) + " AZN" : "Qiymət göstərilməyib";
+
+                        html += "<li data-id='" + item.id + "' data-name='" + $("<div>").text(item.name).html() + "' class='live-search-item'>"; // item.name-i HTML encode etmək üçün
+                        html += "<img src='/Uploads/" + imageUrl + "' alt='" + $("<div>").text(item.name).html() + "' class='live-search-item-image' />";
+                        html += "<div class='live-search-item-details'>";
+                        html += "<div class='live-search-item-name'>" + $("<div>").text(item.name).html() + "</div>";
+                        html += "<div class='live-search-item-price'>" + formattedPrice + "</div>";
+                        html += "</div></li>";
+                    });
+                    html += "</ul>";
+                    resultsDiv.html(html).stop(true, true).fadeIn('fast'); // Yumşaq göstər
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Canlı axtarış xətası:", textStatus, errorThrown);
+                    $("#liveSearchResults").stop(true, true).fadeOut('fast', function() { $(this).empty(); });
+                }
+            });
+        });
+
+        // Nəticəyə kliklədikdə
+        $(document).on("click", "#liveSearchResults ul li.live-search-item", function () {
+            var selectedName = $(this).data("name");
+            var productId = $(this).data("id");
+
+            $("#searchInput").val(selectedName);
+            $("#liveSearchResults").stop(true, true).fadeOut('fast', function() { $(this).empty(); });
+
+            if (productId) {
+                window.location.href = '/ProductDetail/Index/' + productId; // Yönləndirmə URL-inizi yoxlayın
+            }
+        });
+
+        // Form submit edildikdə səhifənin yenilənməsinin qarşısını al
+        $("#searchForm").on("submit", function (e) {
+            e.preventDefault();
+            // İstəsəniz, form submit edildikdə axtarış səhifəsinə yönləndirə bilərsiniz
+            // var query = $("#searchInput").val().trim();
+            // if (query.length > 0) {
+            //     window.location.href = '/Shop/Search?query=' + encodeURIComponent(query); // Axtarış səhifənizin URL-i
+            // }
+        });
+
+        // Axtarış qutusundan və ya nəticələrdən kənara kliklədikdə nəticələri gizlət
+        $(document).on("click", function(event) {
+            var resultsDiv = $("#liveSearchResults");
+            // Hədəf elementin özü və ya searchForm-un içində deyilsə
+            if (!$(event.target).closest('#searchForm').length && !$(event.target).is('#liveSearchResults') && !$(event.target).closest('#liveSearchResults').length) {
+                if (resultsDiv.is(":visible")) {
+                    resultsDiv.stop(true, true).fadeOut('fast');
+                }
+            }
+        });
+    });
+</script>
+<script>
+    const flagPaths = {
+        az: "@Url.Content("~/assets/images/flug/azerbaijan.png")",
+        ru: "@Url.Content("~/assets/images/flug/russia.png")"
+    };
+
+    function updateFlag() {
+        const selectedLang = document.querySelector('select[name="culture"]').value;
+        const flagImg = document.getElementById('langFlag');
+        flagImg.src = flagPaths[selectedLang];
+    }
+
+    // Səhifə yüklənəndə hazırkı dilə uyğun bayrağı göstər
+    document.addEventListener("DOMContentLoaded", updateFlag);
+</script>
+</body>
+</html>

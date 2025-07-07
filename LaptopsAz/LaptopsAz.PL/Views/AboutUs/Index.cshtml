@@ -1,0 +1,87 @@
+@model LaptopsAz.BL.DTOs.NewstellerDtos.NewstellerPostDto
+<!-- main body - start
+      ================================================== -->
+      <main>
+        <!-- breadcrumb_section - start
+        ================================================== -->
+        <div class="breadcrumb_section">
+          <div class="container">
+            <ul class="breadcrumb_nav ul_li">
+              <li>Laptops.az</li>
+              <li>@ViewData["Text4"]</li>
+            </ul>
+          </div>
+        </div>
+        <!-- breadcrumb_section - end
+        ================================================== -->
+
+        <!-- about_section - start
+        ================================================== -->
+        <section class="about_section section_space">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col col-md-6 order-last">
+                <div class="about_image">
+                  <img src="assets/images/about/about_image.svg" alt="Getyootech - Gadgets Ecommerce Site Template">
+                </div>
+              </div>
+              <div class="col col-md-6">
+                <div class="about_content">
+                  <h2 class="about_small_title">@ViewData["Text5"]</h2>
+                  <h3 class="about_title">@ViewData["Text7"]</h3>
+                  <p>
+                    @ViewData["Text1"]
+                  </p>
+                  <ul class="counter_wrap ul_li">
+                    <li>
+                      <span class="counter">21</span>
+                      <small>@ViewData["Text11"]</small>
+                    </li>
+                    <li>
+                      <span><strong class="counter">10</strong>K</span>
+                      <small>@ViewData["Text13"]</small>
+                    </li>
+                    <li>
+                      <span><strong class="counter">100</strong>%</span>
+                      <small>@ViewData["Text8"]</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- about_section - end
+        ================================================== -->
+
+
+        <!-- newsletter_section - start
+    ================================================== -->
+        <section class="newsletter_section">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col col-lg-6">
+                <h2 class="newsletter_title text-white">
+                  <i class="icofont-paper-plane"></i>
+                  @ViewData["Text15"]
+                </h2>
+              </div>
+              <div class="col col-lg-6">
+
+                <div class="newsletter_form">
+                  <form method="post">
+                    <input asp-for="PhoneNumber" type="number" placeholder="@ViewData["Text2"]">
+                    <button type="submit" class="btn btn_danger">@ViewData["Text3"]</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- newsletter_section - end
+        ================================================== -->
+
+      </main>
+      <!-- main body - end
+      ================================================== -->

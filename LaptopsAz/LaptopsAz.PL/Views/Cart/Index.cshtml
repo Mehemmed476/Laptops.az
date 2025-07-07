@@ -1,0 +1,102 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<LaptopsAz.Core.Models.CartItem>
+
+<!-- main body - start
+      ================================================== -->
+      <main>
+        <!-- breadcrumb_section - start
+        ================================================== -->
+        <div class="breadcrumb_section">
+          <div class="container">
+            <ul class="breadcrumb_nav ul_li">
+              <li><a href="index.html">Laptops.az</a></li>
+              <li>@ViewData["Text1"]</li>
+            </ul>
+          </div>
+        </div>
+        <!-- breadcrumb_section - end
+        ================================================== -->
+
+        <!-- cart_section - start
+        ================================================== -->
+        <section class="cart_section section_space">
+          <div class="container">
+            <div class="cart_table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>@ViewData["Text10"]</th>
+                    <th class="text-center">@ViewData["Text11"]</th>
+                    <th class="text-center">@ViewData["Text12"]</th>
+                    <th class="text-center">@ViewData["Text13"]</th>
+                    <th class="text-center">@ViewData["Text14"]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach (var item in Model)
+                  {
+                    <tr>
+                      <td>
+                        <div class="cart_product">
+                          <img src="~/Uploads/@item.ImageURL" alt="Getyootech - Gadgets Ecommerce Site Template">
+                          <h3><a asp-controller="ProductDetail" asp-action="Index">@item.ProductName</a></h3>
+                        </div>
+                      </td>
+                      <td class="text-center"><span class="price_text">₼@item.Price</span></td>
+                      <td class="text-center">
+                            <input class="input_number" type="text" value="@item.Quantity" disabled="">
+                      </td>
+                      <td class="text-center"><span class="price_text">₼@( item.Price * item.Quantity) </span></td>
+                      <td class="text-center"><a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-productId="@item.ProductID" class="remove_btn"><i class="fal fa-trash-alt"></i></a></td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cart_btns_wrap">
+              <div class="row">
+                <div class="col col-lg-6">
+                </div>
+
+                <div class="col col-lg-6">
+                  <ul class="btns_group ul_li_right">
+                    <li><a class="btn btn_dark" asp-controller="Cart" asp-action="Checkout">@ViewData["Text15"]</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-lg-6">
+              </div>
+
+              <div class="col col-lg-6">
+                <div class="cart_total_table">
+                  <h3 class="wrap_title">Cart Total</h3>
+                  <ul class="ul_li_block">
+                    <li>
+                      <span>Order Total</span>
+                      <span class="total_price">
+                        <p style="display: none">@{
+                          int sum = 0;
+                        }
+                        @foreach (var item1 in Model)
+                        {
+                          @(sum += item1.Quantity * (int)item1.Price)
+                        }</p>
+                        ₼@sum
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- cart_section - end
+        ================================================== -->
+
+      </main>
+      <!-- main body - end
+      ================================================== -->

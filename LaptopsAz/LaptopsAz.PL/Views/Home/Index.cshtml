@@ -1,0 +1,588 @@
+@using LaptopsAz.PL.ViewModels.HomeVMs;
+@model HomeVM;
+
+<main>
+    <section class="slider_section">
+        <div class="main_slider" data-slick='{"arrows": false}'>
+            @foreach (var slider in Model.SliderItems)
+            {
+                <div class="slider_item">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="order-last col col-lg-6 col-md-6 col-sm-6">
+                                <div class="slider_image" data-animation="fadeInRight" data-delay=".2s">
+                                    <img src="~/Uploads/@slider.ImageURL" alt="Laptops.az" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="col col-lg-5 col-md-6 col-sm-6">
+                                <div class="slider_content">
+                                    <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">@slider.SmallTitle</h3>
+                                    <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">@slider.LargeTitle</h4>
+                                    <p data-animation="fadeInUp2" data-delay=".6s">@slider.Description</p>
+                                    <a class="btn btn_primary" asp-controller="Shop" asp-action="Index" data-animation="fadeInUp2" data-delay=".8s">Alış Verişə Başla</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <section class="shorts-section-container">
+        <div class="gallery-title-container">
+            <div class="gallery-title-line"></div>
+            <h2 class="gallery-title-text">Shorts</h2>
+        </div>
+
+        <div class="shorts-gallery">
+            <div class="shorts-container">
+                <div class="shorts-wrapper">
+                    @foreach(var item21 in Model.Shorts)
+                    {
+                        <div class="short-item">
+                            @* data-src kullanarak gerçek URL'yi geciktiriyoruz *@
+                            <iframe
+                                data-src="https://www.youtube.com/embed/@item21.Id"
+                                title="@item21.Title"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                loading="lazy" 
+                                allowfullscreen>
+                            </iframe>
+                            <p class="short-title">@item21.Title</p>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+            <button class="nav-btn prev-btn" id="prevBtn" aria-label="Əvvəlki"><</button>
+            <button class="nav-btn next-btn" id="nextBtn" aria-label="Növbəti">></button>
+        </div>
+    </section>
+
+    <section class="category_section section_space">
+        <div class="container">
+            <div class="section_title mb-0">
+                <h2 class="title_text"><i class="fa-duotone fa-fire"></i>@ViewData["Text35"]</h2>
+            </div>
+            <div class="top_category_wrap arrows_topright">
+                <div class="top_category_carousel" data-slick='{"dots": false}'>
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <div class="slider_item">
+                            <div class="category_boxed">
+                                <a asp-controller="Shop" asp-action="Index" asp-route-CategoryId="@cat.Id">
+                                    <span class="item_image">
+                                        <img src="~/Uploads/@cat.ImageURL" alt="laptops.az" loading="lazy">
+                                    </span>
+                                    <span class="item_title">@cat.CategoryName</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="carousel_nav">
+                    <button type="button" class="tc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                    <button type="button" class="tc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="new_arrivals_section section_space">
+        <div class="container">
+            <div class="section_title mb-0">
+                <h2 class="title_text"><i class="fa-duotone fa-sparkles"></i>@ViewData["Text40"]</h2>
+            </div>
+            <div class="row newarrivals_products">
+                <div class="col col-lg-5">
+                    <div class="deals_product_layout1">
+                        <div class="bg_area">
+                            <h3 class="item_title">@ViewData["Text19"]</h3>
+                            <p>
+                                @ViewData["Text9"]
+                            </p>
+                            <a class="btn border_primary" asp-controller="Shop" asp-action="Index">@ViewData["Text42"]</a>
+                            <div class="item_image">
+                                <img src="~/assets/images/slider/pngwing.com.png" alt="Laptops.az" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-lg-7">
+                    <div class="new_arrivals_carousel arrows_topright">
+                        <div class="common_carousel_2" data-slick='{"dots": false}'>
+                            @foreach (var newProducts in Model.NewProducts)
+                            {
+                                <div class="slider_item">
+                                <div class="product_layout1">
+                                    <div class="item_badge sale_badge">
+                                        <span>SALE</span>
+                                    </div>
+                                    <div class="item_image">
+                                        <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
+                                        <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
+
+                                    </div>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@newProducts.Id">@newProducts.ProductName</a>
+                                        </h3>
+                                        <ul class="rating_star ul_li">
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                        <div class="item_price">
+                                            <span>₼ @newProducts.DiscountPrice</span>
+                                            <del>₼ @newProducts.Price</del>
+                                        </div>
+                                        <ul class="item_btns_group ul_li">
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@newProducts.Id">@ViewData["Text34"]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="product_section">
+        <div class="container">
+            <ul class="tabs_nav nav" role="tablist">
+                <li role="presentation">
+                    <button class="active" data-bs-toggle="tab" data-bs-target="#bestseller_tab" type="button" role="tab" aria-selected="true">@ViewData["Text44"]</button>
+                </li>
+                <li role="presentation">
+                    <button data-bs-toggle="tab" data-bs-target="#ourproduct_tab" type="button" role="tab" aria-selected="false">@ViewData["Text29"]</button>
+                </li>
+                <li role="presentation">
+                    <button data-bs-toggle="tab" data-bs-target="#newproduct_tab" type="button" role="tab" aria-selected="false">@ViewData["Text41"]</button>
+                </li>
+                <li role="presentation">
+                    <button data-bs-toggle="tab" data-bs-target="#hotdeal_tab" type="button" role="tab" aria-selected="false">@ViewData["Text25"]</button>
+                </li>
+            </ul>
+
+            <div class="tab-content tad_has_carousel">
+                <div class="tab-pane fade show active" id="bestseller_tab" role="tabpanel">
+                    <div class="product_carousel_wrap arrows_topright">
+                        <div class="best_seller_carousel" data-slick='{"dots": false}'>
+                            @foreach (var item10 in Model.BestSellers)
+                            {
+                                <div class="product_layout1">
+                                <div class="item_image">
+                                    <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
+                                    <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
+
+                                </div>
+                                <div class="item_content">
+                                    <h3 class="item_title">
+                                        <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item10.Id">@item10.ProductName</a>
+                                    </h3>
+                                    <ul class="rating_star ul_li">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <div class="item_price">
+                                        <span> ₼ @item10.DiscountPrice</span>
+                                        <del> ₼ @item10.Price</del>
+                                    </div>
+                                    <ul class="item_btns_group ul_li">
+                                        <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item10.Id">@ViewData["Text34"]</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="bsc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="bsc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="ourproduct_tab" role="tabpanel">
+                    <div class="product_carousel_wrap arrows_topright">
+                        <div class="common_carousel_3" data-slick='{"dots": false}'>
+                            @foreach (var item11 in Model.OurProducts)
+                            {
+                                <div class="product_layout1">
+                                    <div class="item_image">
+                                        <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
+                                        <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
+
+                                    </div>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item11.Id">@item11.ProductName</a>
+                                        </h3>
+                                        <ul class="rating_star ul_li">
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                        <div class="item_price">
+                                            <span> ₼ @item11.DiscountPrice</span>
+                                            <del> ₼ @item11.Price</del>
+                                        </div>
+                                        <ul class="item_btns_group ul_li">
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item11.Id">@ViewData["Text34"]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="cc3_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="cc3_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="newproduct_tab" role="tabpanel">
+                    <div class="product_carousel_wrap arrows_topright">
+                        <div class="new_product_carousel" data-slick='{"dots": false}'>
+                            @foreach (var item12 in Model.NewestProducts)
+                            {
+                               <div class="product_layout1">
+                                    <div class="item_image">
+                                        <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
+                                        <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
+
+                                    </div>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item12.Id">@item12.ProductName</a>
+                                        </h3>
+                                        <ul class="rating_star ul_li">
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                        <div class="item_price">
+                                            <span> ₼ @item12.DiscountPrice</span>
+                                            <del> ₼ @item12.Price</del>
+                                        </div>
+                                        <ul class="item_btns_group ul_li">
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item12.Id">@ViewData["Text34"]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="npc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="npc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="hotdeal_tab" role="tabpanel">
+                    <div class="product_carousel_wrap arrows_topright">
+                        <div class="hot_deal_carousel" data-slick='{"dots": false}'>
+                            @foreach (var item13 in Model.HotDeals)
+                            {
+                                <div class="product_layout1">
+                                    <div class="item_image">
+                                        <img src="~/Uploads/@item13.ImageURL" alt="Laptops.az" loading="lazy">
+                                        <img src="~/Uploads/@item13.ImageURL" alt="Laptops.az" loading="lazy">
+
+                                    </div>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item13.Id">@item13.ProductName</a>
+                                        </h3>
+                                        <ul class="rating_star ul_li">
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                        <div class="item_price">
+                                            <span> ₼ @item13.DiscountPrice</span>
+                                            <del> ₼ @item13.Price</del>
+                                        </div>
+                                        <ul class="item_btns_group ul_li">
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item13.Id">@ViewData["Text34"]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="hdc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="hdc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="brand_section section_space pb-0" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="brand_carousel">
+                @foreach (var brand in Model.BrandSliders)
+                {
+                    <div class="slider_item">
+                        <a class="product_brand_logo" href="#!">
+                            <img src="~/Uploads/@brand.ImageURL" alt="Laptops.az" loading="lazy">
+                            <img src="~/Uploads/@brand.ImageURL" alt="Laptops.az" loading="lazy">
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <section class="newsletter_section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col col-lg-6">
+                    <h2 class="newsletter_title text-white">
+                        <i class="icofont-paper-plane"></i>
+                        @ViewData["Text43"]
+                    </h2>
+                </div>
+                <div class="col col-lg-6">
+
+                    <div class="newsletter_form">
+                        <form method="post">
+                        <input asp-for="NewstellerPostDto.PhoneNumber" type="number" placeholder="@ViewData["Text5"]">
+                        <button type="submit" class="btn btn_danger">@ViewData["Text8"]</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+      <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const shortsGallery = document.querySelector('.shorts-gallery');
+        const shortsContainer = document.querySelector('.shorts-container');
+        const shortsWrapper = document.querySelector('.shorts-wrapper');
+        const shortItems = document.querySelectorAll('.short-item');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        if (!shortsWrapper || !nextBtn || !prevBtn || !shortsContainer || !shortsGallery) {
+            console.warn('Shorts qalereyasının əsas elementləri tapılmadı. Başlatma ləğv edildi.');
+            return;
+        }
+
+        if (shortItems.length === 0) {
+            console.log('Shorts items tapılmadı.');
+            return;
+        }
+
+        // Iframe lazy loading için Intersection Observer
+        const loadIframe = (iframe) => {
+            if (iframe.dataset.src && !iframe.src) { // Yalnızca henüz yüklenmemişse
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src'); // Yüklendikten sonra data-src'yi kaldır
+            }
+        };
+
+        const iframeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target.querySelector('iframe');
+                    if (iframe) {
+                        loadIframe(iframe);
+                    }
+                    observer.unobserve(entry.target); // Görüldüğünde gözlemlemeyi bırak
+                }
+            });
+        }, {
+            rootMargin: '0px 0px 100px 0px', // Yükleme eşiğini biraz artır, görünmeden biraz önce yüklesin
+            threshold: 0.1 // %10'u görünür olduğunda yükle
+        });
+
+        shortItems.forEach(item => {
+            iframeObserver.observe(item);
+        });
+
+
+        const itemsPerPageDesktop = 5;
+        let currentDesktopPage = 0;
+        let itemWidthWithMargin = 0;
+        let maxPages = 0;
+
+        let isDragging = false;
+        let startX;
+        let initialTransformX = 0;
+        const dragThreshold = 50;
+        const defaultTransition = 'transform 0.6s cubic-bezier(0.32, 0.72, 0, 1)';
+        const snapTransition = 'transform 0.3s ease-out';
+
+
+        function getCurrentTransformX(element) {
+            const style = window.getComputedStyle(element);
+            const matrix = new DOMMatrixReadOnly(style.transform);
+            return matrix.m41;
+        }
+
+        function calculateItemWidthAndButtonVisibility() {
+            if (shortItems.length > 0 && window.getComputedStyle(shortItems[0]).display !== 'none') {
+                const itemStyle = window.getComputedStyle(shortItems[0]);
+                const itemWidth = shortItems[0].offsetWidth;
+                const marginRight = parseInt(itemStyle.marginRight, 10) || 0;
+                itemWidthWithMargin = itemWidth + marginRight;
+            } else {
+                itemWidthWithMargin = 0;
+            }
+
+            maxPages = Math.ceil(shortItems.length / Math.max(1, itemsPerPageDesktop));
+
+            const isMobileView = window.innerWidth <= 768;
+            const notEnoughItemsForPagination = shortItems.length <= itemsPerPageDesktop;
+
+            if (isMobileView || notEnoughItemsForPagination) {
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (prevBtn) prevBtn.style.display = 'none';
+            } else {
+                if (nextBtn) nextBtn.style.display = 'flex';
+                if (prevBtn) prevBtn.style.display = 'flex';
+            }
+            updateButtonStates();
+        }
+
+        function updateButtonStates() {
+            if (window.innerWidth > 768 && shortItems.length > itemsPerPageDesktop) {
+                if (prevBtn) prevBtn.disabled = currentDesktopPage === 0;
+                if (nextBtn) nextBtn.disabled = currentDesktopPage >= maxPages - 1;
+            }
+        }
+
+
+        function updateCarouselForDesktop(useSnapTransition = false) {
+            const isMobileView = window.innerWidth <= 768;
+
+            if (!isMobileView) {
+                shortsWrapper.style.overflowX = 'visible';
+
+                if (itemWidthWithMargin === 0 && shortItems.length > 0) {
+                    console.warn("Element eni sıfırdır, karusel desktopda düzgün işləməyə bilər.");
+                }
+
+                currentDesktopPage = Math.max(0, Math.min(currentDesktopPage, maxPages - 1));
+
+                const offset = -currentDesktopPage * itemsPerPageDesktop * itemWidthWithMargin;
+
+                shortsWrapper.style.transition = useSnapTransition ? snapTransition : defaultTransition;
+                shortsWrapper.style.transform = `translateX(${offset}px)`;
+
+                updateButtonStates();
+
+            } else {
+                shortsWrapper.style.transform = 'translateX(0px)';
+                shortsWrapper.style.overflowX = 'auto';
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (prevBtn) prevBtn.style.display = 'none';
+            }
+        }
+
+        function handleDragStart(e) {
+            if (window.innerWidth <= 768) return;
+            if (e.button !== 0) return;
+
+            isDragging = true;
+            startX = e.pageX;
+            initialTransformX = getCurrentTransformX(shortsWrapper);
+            shortsWrapper.style.transition = 'none';
+            if (shortsContainer) shortsContainer.classList.add('grabbing');
+        }
+
+        function handleDragMove(e) {
+            if (!isDragging || window.innerWidth <= 768) return;
+
+            const currentX = e.pageX;
+            const walk = currentX - startX;
+            shortsWrapper.style.transform = `translateX(${initialTransformX + walk}px)`;
+        }
+
+        function handleDragEnd(e) {
+            if (!isDragging || window.innerWidth <= 768) return;
+
+            isDragging = false;
+            if (shortsContainer) shortsContainer.classList.remove('grabbing');
+
+            const finalTransformX = getCurrentTransformX(shortsWrapper);
+            const displacement = finalTransformX - initialTransformX;
+
+            if (Math.abs(displacement) > dragThreshold) {
+                if (displacement < 0) {
+                    currentDesktopPage = Math.min(maxPages - 1, currentDesktopPage + 1);
+                } else {
+                    currentDesktopPage = Math.max(0, currentDesktopPage - 1);
+                }
+            }
+            updateCarouselForDesktop(true);
+        }
+
+
+        function init() {
+            calculateItemWidthAndButtonVisibility();
+            updateCarouselForDesktop();
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (window.innerWidth > 768 && currentDesktopPage < maxPages - 1) {
+                        currentDesktopPage++;
+                        updateCarouselForDesktop();
+                    }
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (window.innerWidth > 768 && currentDesktopPage > 0) {
+                        currentDesktopPage--;
+                        updateCarouselForDesktop();
+                    }
+                });
+            }
+
+            if (shortsContainer) {
+                shortsContainer.addEventListener('mousedown', handleDragStart);
+            }
+            window.addEventListener('mousemove', handleDragMove);
+            window.addEventListener('mouseup', handleDragEnd);
+            window.addEventListener('mouseleave', (e) => {
+                if (isDragging) {
+                    handleDragEnd(e);
+                }
+            });
+
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    calculateItemWidthAndButtonVisibility();
+                    updateCarouselForDesktop();
+                }, 200);
+            });
+        }
+
+        init();
+    });
+</script>

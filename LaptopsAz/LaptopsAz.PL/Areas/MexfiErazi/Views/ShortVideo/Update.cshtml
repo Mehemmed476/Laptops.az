@@ -1,0 +1,86 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model LaptopsAz.BL.DTOs.ShortVideoDtos.ShortVideoPutDto;
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Control Panel - Create Form</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">ShortVideo</a></li>
+                                <li class="breadcrumb-item active">Create</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Create ShortVideo</h2>
+                        </div>
+                        <div class="card-body p-4">
+
+                            <div class="row">
+                                <form method="post" enctype="multipart/form-data">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label asp-for="Title" class="form-label">ShortVideo Title</label>
+                                            <input asp-for="Title" class="form-control" type="text" id="title-input">
+                                            <span asp-validation-for="Title" style="color: mediumpurple"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Link" class="form-label">ShortVideo Link</label>
+                                            <input asp-for="Link" class="form-control" type="text" id="link-input">
+                                            <span asp-validation-for="Link" style="color: mediumpurple"></span>
+                                        </div>
+                                        @if (Model.IsActive == false)
+                                        {
+                                            <div class="form-check form-switch form-switch-lg mb-3" dir="ltr">
+                                                <label class="form-check-label" asp-for="IsActive">Active ShortVideo</label>
+                                                <input asp-for="IsActive" type="checkbox" class="form-check-input" id="customSwitchsizelg">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-check form-switch form-switch-lg mb-3" dir="ltr">
+                                                <label class="form-check-label" asp-for="IsActive">Active ShortVideo</label>
+                                                <input asp-for="IsActive" type="checkbox" class="form-check-input" id="customSwitchsizelg" checked>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="d-grid gap-2 mt-5">
+                                        <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>document.write(new Date().getFullYear())</script> © Laptops.az
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- end main content-->

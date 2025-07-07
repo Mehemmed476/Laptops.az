@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>10K</value>
+  </data>
+  <data name="Text2" xml:space="preserve">
+    <value>15K</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>20K</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>3 Rating(s)</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>Mobil nömrənizi qeyd edin</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>Add To Cart</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Alış Verişə Başla</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Bazardakı ən müasir məhsulları ən uyğun təkliflərlə əldə edə bilərsiz</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>BestSeller</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>CURREN 8109 Watches</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Choose A Option</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Color *</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Google+</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>It is a long established fact that a reader will be distracted eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate</value>
+  </data>
+  <data name="Text18" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="Text19" xml:space="preserve">
+    <value>Möhtəşəm Fürsətlər</value>
+  </data>
+  <data name="Text20" xml:space="preserve">
+    <value>NewProduct</value>
+  </data>
+  <data name="Text21" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Text22" xml:space="preserve">
+    <value>OurProduct</value>
+  </data>
+  <data name="Text23" xml:space="preserve">
+    <value>Potato</value>
+  </data>
+  <data name="Text24" xml:space="preserve">
+    <value>Product Quick View</value>
+  </data>
+  <data name="Text25" xml:space="preserve">
+    <value>Qaçmaz Təkliflər</value>
+  </data>
+  <data name="Text26" xml:space="preserve">
+    <value>Quick View</value>
+  </data>
+  <data name="Text27" xml:space="preserve">
+    <value>Repuired Fiields *</value>
+  </data>
+  <data name="Text28" xml:space="preserve">
+    <value>SALE</value>
+  </data>
+  <data name="Text29" xml:space="preserve">
+    <value>Sevilənlər</value>
+  </data>
+  <data name="Text30" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="Text31" xml:space="preserve">
+    <value>Size *</value>
+  </data>
+  <data name="Text32" xml:space="preserve">
+    <value>Some option</value>
+  </data>
+  <data name="Text33" xml:space="preserve">
+    <value>Subtotal:</value>
+  </data>
+  <data name="Text34" xml:space="preserve">
+    <value>Səbətə əlavə et</value>
+  </data>
+  <data name="Text35" xml:space="preserve">
+    <value>Top Kateqoriyalar</value>
+  </data>
+  <data name="Text36" xml:space="preserve">
+    <value>Total:</value>
+  </data>
+  <data name="Text37" xml:space="preserve">
+    <value>Tweet</value>
+  </data>
+  <data name="Text38" xml:space="preserve">
+    <value>View Cart</value>
+  </data>
+  <data name="Text39" xml:space="preserve">
+    <value>Yellow Blouse</value>
+  </data>
+  <data name="Text40" xml:space="preserve">
+    <value>Yeni Məhsullar</value>
+  </data>
+  <data name="Text41" xml:space="preserve">
+    <value>Yenilər</value>
+  </data>
+  <data name="Text42" xml:space="preserve">
+    <value>İndi Al</value>
+  </data>
+  <data name="Text43" xml:space="preserve">
+    <value>Ən Yeni Təkliflərdən ilk Siz Xəbərdar olun</value>
+  </data>
+  <data name="Text44" xml:space="preserve">
+    <value>Ən çox Satılanlar</value>
+  </data>
+</root>

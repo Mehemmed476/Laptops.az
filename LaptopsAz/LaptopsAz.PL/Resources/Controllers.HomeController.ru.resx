@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>10K</value>
+  </data>
+  <data name="Text2" xml:space="preserve">
+    <value>15K</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>Возлюбленные</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>3 Rating(s)</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>Зарегистрируйте свой номер мобильного телефона</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>Добавить в корзину</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Начать покупки</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Отправлять</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Вы можете получить самые современные продукты на рынке по самым выгодным предложениям.</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Бестселлер</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Цвет *</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Google+</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text18" xml:space="preserve">
+    <value>Нравится</value>
+  </data>
+  <data name="Text19" xml:space="preserve">
+    <value>Отличные предложения</value>
+  </data>
+  <data name="Text20" xml:space="preserve">
+    <value>Новый продукт</value>
+  </data>
+  <data name="Text21" xml:space="preserve">
+    <value>Опции</value>
+  </data>
+  <data name="Text22" xml:space="preserve">
+    <value>Наш продукт</value>
+  </data>
+  <data name="Text23" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text24" xml:space="preserve">
+    <value>Быстрый просмотр товара</value>
+  </data>
+  <data name="Text25" xml:space="preserve">
+    <value>Предложение</value>
+  </data>
+  <data name="Text26" xml:space="preserve">
+    <value>Быстрый просмотр</value>
+  </data>
+  <data name="Text27" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text28" xml:space="preserve">
+    <value>[tərcümə yoxdur]</value>
+  </data>
+  <data name="Text29" xml:space="preserve">
+    <value>Возлюбленные</value>
+  </data>
+  <data name="Text30" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="Text31" xml:space="preserve">
+    <value>Размер *</value>
+  </data>
+  <data name="Text32" xml:space="preserve">
+    <value>вариант</value>
+  </data>
+  <data name="Text33" xml:space="preserve">
+    <value>Промежуточный итог:</value>
+  </data>
+  <data name="Text34" xml:space="preserve">
+    <value>Добавить в корзину</value>
+  </data>
+  <data name="Text35" xml:space="preserve">
+    <value>Главные категории</value>
+  </data>
+  <data name="Text36" xml:space="preserve">
+    <value>Итого:</value>
+  </data>
+  <data name="Text37" xml:space="preserve">
+    <value>Твитнуть</value>
+  </data>
+  <data name="Text38" xml:space="preserve">
+    <value>Просмотр корзины</value>
+  </data>
+  <data name="Text39" xml:space="preserve">
+    <value>Желтая блузка</value>
+  </data>
+  <data name="Text40" xml:space="preserve">
+    <value>Новые продукты</value>
+  </data>
+  <data name="Text41" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="Text42" xml:space="preserve">
+    <value>Купить сейчас</value>
+  </data>
+  <data name="Text43" xml:space="preserve">
+    <value>Будьте первыми, кто узнает о новых предложениях</value>
+  </data>
+  <data name="Text44" xml:space="preserve">
+    <value>Хиты продаж</value>
+  </data>
+</root>

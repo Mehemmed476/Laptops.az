@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>10am : 8pm</value>
+  </data>
+  <data name="Text2" xml:space="preserve">
+    <value>Baku, 28 May</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>Laptops.az</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>Магазин</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Промежуточный итог:</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Сулейман Рагимов 201</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Итого:</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Зарегистрируйте свой номер мобильного телефона</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Желтая блузка</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>info@laptops.az</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Наш адрес</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Будьте первыми, кто узнает о новых предложениях</value>
+  </data>
+</root>

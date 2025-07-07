@@ -1,0 +1,76 @@
+@model LaptopsAz.PL.Areas.MexfiErazi.ViewModels.ProductVMs.DetailVm
+
+<div class="modal-header">
+    <h5 class="modal-title">@Model.ProductGetDto.ProductName</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <p><strong>Description: </strong> @Model.ProductGetDto.Description</p>
+    <p><strong>Price: </strong> @Model.ProductGetDto.Price</p>
+    <p><strong>Discount Price: </strong> @Model.ProductGetDto.DiscountPrice</p>
+    <p><strong>Stock: </strong> @Model.ProductGetDto.Stock</p>
+    <p><strong>Category: </strong> @Model.ProductGetDto.Category.CategoryName</p>
+    <p><strong>Brand: </strong> @Model.ProductGetDto.Brand</p>
+    
+    <p><strong>HomePage Tag:</strong> @Model.ProductGetDto.HomePageTag</p>
+    <p><strong>Created Date:</strong> @Model.ProductGetDto.CreatedAt</p>
+    <strong>Product Specs:</strong>
+    <table class="table table-sm table-hover mt-2">
+        <thead>
+        <tr>
+            <th scope="col">Spec Name</th>
+            <th scope="col">Spec Value</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var spec in Model.ProductSpecGetDtos)
+        {
+            <tr>
+                <td>@spec.SpecName</td>
+                <td><em>@spec.SpecValue</em></td>
+                <td>
+                    <a asp-controller="ProductSpec" asp-action="Update" asp-route-id="@spec.Id" class="btn btn-primary btn-sm me-2" title="Update">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <a asp-controller="ProductSpec" asp-action="Delete" asp-route-id="@spec.Id" class="btn btn-danger btn-sm" title="Delete">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <div class="mb-3">
+        <strong>Product Images:</strong>
+        <table class="table table-sm table-hover mt-2">
+            <thead>
+            <tr>
+                <th scope="col" style="width: 115px;">Image</th>
+                <th scope="col" style="width: 120px;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.ProductPhotoGetDtos)
+            {
+                <tr>
+                    <td class="align-middle">
+                        <img src="~/Uploads/@item.ImageURL" alt="Product Image" style="width: 100px; height: auto; max-height: 100px; border-radius: 5px; object-fit: cover;" class="img-thumbnail" />
+                    </td>
+                    <td class="align-middle">
+                        <a asp-controller="ProductPhoto" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2" title="Update Image">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a asp-controller="ProductPhoto" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Delete Image">
+                            <i class="fa-solid fa-delete-left"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>

@@ -1,0 +1,293 @@
+@model LaptopsAz.PL.ViewModels.ShopVMs.ProductDetailVM
+
+@section meta {
+  <title>@Model.Product.ProductName | laptops.az</title>
+  <meta name="description" content="@Model.Product.Description" />
+  <meta name="keywords" content="@Model.Product.ProductName, @Model.Product.Brand, ucuz laptop, Azərbaycanda laptop, laptops.az" />
+
+  <meta property="og:title" content="@Model.Product.ProductName | laptops.az" />
+  <meta property="og:description" content="@Model.Product.Description" />
+  <meta property="og:image" content="@Url.Content(Model.Product.ImageURL)" />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+  <link rel="canonical" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+}
+
+<!-- main body - start
+      ================================================== -->
+      <main>
+        <!-- breadcrumb_section - start
+        ================================================== -->
+        <div class="breadcrumb_section">
+          <div class="container">
+            <ul class="breadcrumb_nav ul_li">
+              <li>Laptops.az</li>
+              <li>@ViewData["Text1"]</li>
+            </ul>
+          </div>
+        </div>
+        <!-- breadcrumb_section - end
+        ================================================== -->
+
+        <!-- product_details - start
+        ================================================== -->
+        <section class="product_details section_space pb-0">
+          <div class="container">
+            <div class="row">
+              <div class="col col-lg-6">
+                <div class="product_details_image">
+                  <div class="details_image_carousel">
+                    <div class="slider_item">
+                      <img src="~/Uploads/@Model.Product.ImageURL" alt="Laptops.az">
+                    </div>
+                    @foreach (var image in Model.Photos)
+                    {
+                      <div class="slider_item">
+                        <img src="~/Uploads/@image.ImageURL" alt="Laptops.az">
+                      </div>
+                    }
+                  </div>
+
+                  <div class="details_image_carousel_nav">
+                    <div class="slider_item">
+                      <img src="~/Uploads/@Model.Product.ImageURL" alt="Laptops.az">
+                    </div>
+                    @foreach (var image in Model.Photos)
+                    {
+                      <div class="slider_item">
+                        <img src="~/Uploads/@image.ImageURL" alt="Laptops.az">
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="product_details_content">
+                  <h2 class="item_title">@Model.Product.ProductName</h2>
+                  <p>
+                    @Model.Product.Description
+                  </p>
+                  <div class="item_price">
+                    <span> &#8380; @Model.Product.DiscountPrice</span>
+                    <del> &#8380; @Model.Product.Price</del>
+                  </div>
+
+                  <hr>
+
+                  <div class="quantity_wrap">
+                    <form action="#">
+                      <div class="quantity_input">
+                        <button type="button" class="input_number_decrement">
+                          <i class="fal fa-minus"></i>
+                        </button>
+                        <input class="input_number" type="text" value="1" readonly>
+                        <button type="button" class="input_number_increment">
+                          <i class="fal fa-plus"></i>
+                        </button>
+                      </div>
+                    </form>
+
+                    <div class="total_price">
+                      Total: <span id="total_price"> &#8380; @Model.Product.DiscountPrice.ToString()</span>
+                    </div>
+                  </div>
+
+                  <ul class="default_btns_group ul_li">
+                    <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Product.Id">@ViewData["Text10"]</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="details_information_tab">
+              <ul class="tabs_nav nav ul_li" role=tablist>
+                <li role="presentation">
+                  <button data-bs-toggle="tab" data-bs-target="#additional_information_tab" type="button" role="tab" aria-controls="additional_information_tab" aria-selected="false">
+                    @ViewData["Text11"]
+                  </button>
+                </li>
+                <li role="presentation">
+                  <button data-bs-toggle="tab" data-bs-target="#reviews_tab" type="button" role="tab" aria-controls="reviews_tab" aria-selected="false">
+                    @ViewData["Text12"]
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade" id="additional_information_tab" role="tabpanel">
+                  <p>
+                    @Model.Product.Description
+                  </p>
+
+                  <div class="additional_info_list">
+                    <h4 class="info_title">@ViewData["Text11"]: </h4>
+                    <ul class="ul_li_block">
+                      @foreach (var spec in Model.ProductSpecs)
+                      {
+                        <li>@spec.SpecName: @spec.SpecValue</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="reviews_tab" role="tabpanel">
+                  <div class="customer_reviews">
+                    <h4 class="reviews_tab_title">@ViewData["Text12"]</h4>
+                    @foreach (var review in Model.Reviews)
+                    {
+                      <div class="customer_review_item clearfix">
+                        <div class="customer_content">
+                          <div class="customer_info">
+                            <h4 class="customer_name">@review.FirstName @review.LastName</h4>
+                            <span class="comment_date">@review.CreatedAt</span>
+                          </div>
+                          <p class="mb-0">
+                            @review.Comment
+                          </p>
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  <div class="customer_review_form">
+                    <h4 class="reviews_tab_title">@ViewData["Text13"]</h4>
+                    <form method="POST">
+                      <div class="form_item">
+                        <input asp-for="ReviewPost.FirstName" type="text" placeholder="Your name*">
+                      </div>
+                      <div class="form_item">
+                        <input asp-for="ReviewPost.LastName" type="text" placeholder="Your surname*">
+                      </div>
+                      <div class="form_item">
+                        <textarea asp-for="ReviewPost.Comment" placeholder="Your Review*"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn_primary">@ViewData["Text14"]</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- product_details - end
+        ================================================== -->
+
+        <!-- related_products_section - start
+        ================================================== -->
+        <section class="related_products_section section_space">
+          <div class="container">
+            <div class="section_title mb-0">
+              <h2 class="title_text">@ViewData["Text15"]</h2>
+            </div>
+            <div class="product_wrap related_products_wrap">
+              @foreach (var latest in Model.LatestProducts)
+              {
+                <div class="product_layout1">
+                  <div class="item_image">
+                    <img src="~/Uploads/@latest.ImageURL" alt="Laptops.az">
+                    <img src="~/Uploads/@latest.ImageURL" alt="Laptops.az">
+                  </div>
+                  <div class="item_content">
+                    <h3 class="item_title">
+                      <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@latest.Id">@latest.ProductName</a>
+                    </h3>
+                    <div class="item_price">
+                      <span> &#8380; @latest.DiscountPrice</span>
+                      <del> &#8380; @latest.Price</del>
+                    </div>
+                    <ul class="item_btns_group ul_li">
+                      <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@latest.Id">@ViewData["Text10"]</a></li>
+                    </ul>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </section>
+        <!-- related_products_section - end
+        ================================================== -->
+
+        <!-- newsletter_section - start
+    ================================================== -->
+        <section class="newsletter_section">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col col-lg-6">
+                <h2 class="newsletter_title text-white">
+                  <i class="icofont-paper-plane"></i>
+                  @ViewData["Text16"]
+                </h2>
+              </div>
+              <div class="col col-lg-6">
+
+                <div class="newsletter_form">
+                  <form method="post">
+                    <input asp-for="NewstellerPostDto.PhoneNumber" type="number" placeholder="@ViewData["Text17"]">
+                    <button type="submit" class="btn btn_danger">@ViewData["Text14"]</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- newsletter_section - end
+        ================================================== -->
+
+      </main>
+      <!-- main body - end
+      ================================================== -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const price = parseFloat("@Model.Product.DiscountPrice".replace(',', '.'));
+    const input = document.querySelector(".input_number");
+    const minusBtn = document.querySelector(".input_number_decrement");
+    const plusBtn = document.querySelector(".input_number_increment");
+    const totalEl = document.getElementById("total_price");
+
+    // Artıq qeyd olunmuş eventləri təmizləyirik (önləmək üçün eyni kodun 2 dəfə işləməsi)
+    const newPlus = plusBtn.cloneNode(true);
+    const newMinus = minusBtn.cloneNode(true);
+    const newInput = input.cloneNode(true);
+    plusBtn.parentNode.replaceChild(newPlus, plusBtn);
+    minusBtn.parentNode.replaceChild(newMinus, minusBtn);
+    input.parentNode.replaceChild(newInput, input);
+
+    // Yeni elementləri yenidən seç
+    const inputField = document.querySelector(".input_number");
+    const minusButton = document.querySelector(".input_number_decrement");
+    const plusButton = document.querySelector(".input_number_increment");
+
+    function getQuantity() {
+      return Number(inputField.value) || 1;
+    }
+
+    function setQuantity(val) {
+      const newVal = Math.max(1, Math.min(10, val));
+      inputField.value = newVal;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const quantity = getQuantity();
+      const total = (price * quantity).toFixed(2).replace('.', ',');
+      totalEl.textContent = total;
+    }
+
+    plusButton.addEventListener("click", () => {
+      setQuantity(getQuantity() + 1);
+    });
+
+    minusButton.addEventListener("click", () => {
+      setQuantity(getQuantity() - 1);
+    });
+
+    inputField.addEventListener("input", () => {
+      setQuantity(getQuantity());
+    });
+
+    updateTotal();
+  });
+</script>
+

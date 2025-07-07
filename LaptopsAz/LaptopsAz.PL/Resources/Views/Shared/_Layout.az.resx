@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>&quot; + item.name + &quot;</value>
+  </data>
+  <data name="Text3" xml:space="preserve">
+    <value>&quot;;
+                    data.forEach(function (item) {
+                        html += &quot;</value>
+  </data>
+  <data name="Text4" xml:space="preserve">
+    <value>&quot;;
+                    });
+                    html += &quot;</value>
+  </data>
+  <data name="Text5" xml:space="preserve">
+    <value>. Bütün hüquqlar qorunur.</value>
+  </data>
+  <data name="Text6" xml:space="preserve">
+    <value>.contact_card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            max-width: 900px; /* genişliği artırdım */
+            width: 480px;      /* mümkün olan tam genişlik */
+            padding: 20px 50px; /* yan padding biraz daha artırıldı */
+            box-sizing: border-box;
+        }
+
+        .contact_title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px; /* alt boşluk azaltıldı */
+            color: #0071f8;
+            border-bottom: 2px solid #0071f8;
+            padding-bottom: 6px;
+        }
+
+        .contact_details li {
+            font-size: 18px;
+            margin-bottom: 10px; /* alt boşluk azaltıldı */
+            line-height: 1.1; /* satır yüksekliği azaltıldı */
+            display: flex;
+            align-items: center;
+        }
+
+        .contact_details li .icon {
+            font-size: 22px;
+            margin-right: 12px;
+            color: #0071f8;
+            flex-shrink: 0;
+        }
+
+        .contact_details li b {
+            color: #252525;
+            font-weight: 600;
+        }</value>
+  </data>
+  <data name="Text7" xml:space="preserve">
+    <value>Haqqımızda</value>
+  </data>
+  <data name="Text8" xml:space="preserve">
+    <value>Home V.1 - Getyootech - Gadgets Ecommerce Site Template</value>
+  </data>
+  <data name="Text9" xml:space="preserve">
+    <value>Kateqoriyalar</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Laptops.az</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Mağaza</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Məhsul axtar</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>No results found</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>© 2025</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Əlaqə</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Əlaqə:</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>Əsas Səhifə</value>
+  </data>
+  <data name="Text2" xml:space="preserve">
+    <value>Məhsul axtar</value>
+  </data>
+</root>

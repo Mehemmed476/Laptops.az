@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<root>
+  <data name="Text1" xml:space="preserve">
+    <value>Məhsul</value>
+  </data>
+  <data name="Text11" xml:space="preserve">
+    <value>Parametrlər</value>
+  </data>
+  <data name="Text12" xml:space="preserve">
+    <value>Kommentlər</value>
+  </data>
+  <data name="Text13" xml:space="preserve">
+    <value>Komment əlavə et</value>
+  </data>
+  <data name="Text14" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
+  <data name="Text15" xml:space="preserve">
+    <value>Yeni Məhsullar</value>
+  </data>
+  <data name="Text10" xml:space="preserve">
+    <value>Səbətə əlavə et</value>
+  </data>
+  <data name="Text16" xml:space="preserve">
+    <value>Ən Yeni Təkliflərdən ilk Siz Xəbərdar olun</value>
+  </data>
+  <data name="Text17" xml:space="preserve">
+    <value>Mobil nömrənizi qeyd edin</value>
+  </data>
+</root>

@@ -1,0 +1,199 @@
+@using LaptopsAz.Core.Enums
+@model ProductPostDto;
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- Başlık -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Control Panel - Create Form</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
+                                <li class="breadcrumb-item active">Create</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Başlık -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Create Product</h2>
+                        </div>
+                        <div class="card-body p-4">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label asp-for="ProductName" class="form-label">Product Name</label>
+                                        <input asp-for="ProductName" class="form-control" type="text">
+                                        <span asp-validation-for="ProductName" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Description" class="form-label">Description</label>
+                                        <input asp-for="Description" class="form-control" type="text">
+                                        <span asp-validation-for="Description" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Price" class="form-label">Price</label>
+                                        <input asp-for="Price" class="form-control" type="text">
+                                        <span asp-validation-for="Price" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="DiscountPrice" class="form-label">Discount Price</label>
+                                        <input asp-for="DiscountPrice" class="form-control" type="text">
+                                        <span asp-validation-for="DiscountPrice" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Stock" class="form-label">Stock</label>
+                                        <input asp-for="Stock" class="form-control" type="text">
+                                        <span asp-validation-for="Stock" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Brand" class="form-label">Brand</label>
+                                        <input asp-for="Brand" class="form-control" type="text">
+                                        <span asp-validation-for="Brand" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="HomePageTag" class="form-label">HomePage Tag</label>
+                                        <select asp-for="HomePageTag" class="form-select">
+                                            <option value="">Select</option>
+                                            @foreach (var tag in Enum.GetValues(typeof(HomePageTagEnum)))
+                                            {
+                                                <option value="@tag">@tag</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="CategoryID" class="form-label">Category</label>
+                                        <select asp-for="CategoryID" class="form-select">
+                                            <option value="">Select</option>
+                                            @foreach (var item in Model.Categories)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Image" class="form-label">Upload Main Photo</label>
+                                        <input asp-for="Image" class="form-control" type="file" multiple>
+                                        <span asp-validation-for="Image" style="color: mediumpurple"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="Images" class="form-label">Upload Photos</label>
+                                        <input asp-for="Images" class="form-control" type="file" multiple>
+                                        <span asp-validation-for="Images" style="color: mediumpurple"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Specifications</label>
+                                        <div id="spec-container">
+                                            @if (Model.Specs != null && Model.Specs.Any())
+                                            {
+                                                for (int i = 0; i < Model.Specs.Count; i++)
+                                                {
+                                                    <div class="row spec-item mb-2">
+                                                        <div class="col-md-5">
+                                                            <select name="Specs[@i].SpecName" class="form-select">
+                                                                @foreach (var spec in Enum.GetValues(typeof(ComputerSpecification)).Cast<ComputerSpecification>())
+                                                                {
+                                                                    var selected = Model.Specs[i].SpecName == spec ? "selected" : "";
+                                                                    @:<option value="@spec" selected="@selected">@spec</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input name="Specs[@i].SpecValue" class="form-control" placeholder="Spec Value" value="@Model.Specs[i].SpecValue" />
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button type="button" class="btn btn-danger remove-spec">X</button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                        <button type="button" id="add-spec" class="btn btn-secondary mt-2">+ Add Spec</button>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="d-grid gap-2 mt-5">
+                                    <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>document.write(new Date().getFullYear())</script> © Laptops.az
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+@{
+    var enumOptions = "";
+    foreach (var spec in Enum.GetValues(typeof(ComputerSpecification)).Cast<ComputerSpecification>())
+    {
+        enumOptions += $"<option value='{spec}'>{spec}</option>";
+    }
+}
+
+<script>
+    // Enum dəyərləri JS üçün hazırlandı
+    const specOptions = `@Html.Raw(enumOptions)`;
+
+    let specIndex = @Model.Specs?.Count ?? 0;
+
+    document.getElementById("add-spec").addEventListener("click", function () {
+        const container = document.getElementById("spec-container");
+
+        const row = document.createElement("div");
+        row.className = "row spec-item mb-2";
+
+        row.innerHTML = `
+            <div class="col-md-5">
+                <select name="Specs[${specIndex}].SpecName" class="form-control">
+                    ${specOptions}
+                </select>
+            </div>
+            <div class="col-md-5">
+                <input name="Specs[${specIndex}].SpecValue" class="form-control" placeholder="Spec Value" />
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger remove-spec">X</button>
+            </div>
+        `;
+
+        container.appendChild(row);
+        specIndex++;
+    });
+
+    // Remove düyməsi işləsin
+    document.addEventListener("click", function (e) {
+        if (e.target && e.target.classList.contains("remove-spec")) {
+            e.target.closest(".spec-item").remove();
+        }
+    });
+</script>
+
+
+
+

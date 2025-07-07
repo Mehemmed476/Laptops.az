@@ -1,0 +1,524 @@
+@using LaptopsAz.PL.ViewModels.ShopVMs
+@model ShopProductsVM
+
+<!-- main body - start
+================================================== -->
+<main>
+    <!-- breadcrumb_section - start
+    ================================================== -->
+    <div class="breadcrumb_section">
+        <div class="container">
+            <ul class="breadcrumb_nav ul_li">
+                <li>Laptops.az</li>
+                <li>@ViewData["Text21"]</li>
+            </ul>
+        </div>
+    </div>
+    <!-- breadcrumb_section - end
+    ================================================== -->
+
+    <!-- product_section - start
+    ================================================== -->
+    <section class="product_section section_space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="filter_topbar">
+                        <div class="row align-items-center">
+                            <div class="col col-md-4 col-sm-4">
+                                <ul class="layout_btns nav" role="tablist">
+                                    <li role="presentation">
+                                        <form method="get" action="@Url.Action("Index", "Shop")">
+                                            @* Bütün filterləri form ilə göndəririk *@
+                                            @foreach (var key in Context.Request.Query.Keys)
+                                            {
+                                                if (key != "viewMode" && key != "page")
+                                                {
+                                                    foreach (var value in Context.Request.Query[key])
+                                                    {
+                                                        <input type="hidden" name="@key" value="@value" />
+                                                    }
+                                                }
+                                            }
+                                            <input type="hidden" name="viewMode" value="grid" />
+                                            <input type="hidden" name="page" value="@Model.CurrentPageForGrid" />
+                                            <button type="submit" class="@(Model.ViewMode == "grid" ? "active" : "")">
+                                                <i class="fa-solid fa-grid"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li role="presentation">
+                                        <form method="get" action="@Url.Action("Index", "Shop")">
+                                            @foreach (var key in Context.Request.Query.Keys)
+                                            {
+                                                if (key != "viewMode" && key != "page")
+                                                {
+                                                    foreach (var value in Context.Request.Query[key])
+                                                    {
+                                                        <input type="hidden" name="@key" value="@value" />
+                                                    }
+                                                }
+                                            }
+                                            <input type="hidden" name="viewMode" value="list" />
+                                            <input type="hidden" name="page" value="@Model.CurrentPageForList" />
+                                            <button type="submit" class="@(Model.ViewMode == "list" ? "active" : "")">
+                                                <i class="fa-solid fa-list"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                <hr>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane fade @(Model.ViewMode == "grid" ? "show active" : "")" id="home" role="tabpanel">
+                            <div class="product_wrap">
+                                @foreach (var itemGrid in Model.ProductsGrid)
+                                {
+                                    <div class="product_layout1">
+                                        <div class="item_badge hot_badge">
+                                            <span>HOT</span>
+                                        </div>
+                                        <div class="item_image">
+                                            <img src="~/Uploads/@itemGrid.ImageURL" alt="laptops.az">
+                                            <img src="~/Uploads/@itemGrid.ImageURL" alt="laptops.az">
+
+                                        </div>
+                                        <div class="item_content">
+                                            <h3 class="item_title">
+                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemGrid.Id">@itemGrid.ProductName</a>
+                                            </h3>
+                                            <ul class="rating_star ul_li">
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                            </ul>
+                                            <div class="item_price">
+                                                <span> &#8380; @itemGrid.DiscountPrice</span>
+                                                <del> &#8380; @itemGrid.Price</del>
+                                            </div>
+                                            <ul class="item_btns_group ul_li">
+                                                <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@itemGrid.Id">@ViewData["Text14"]</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                            <div class="pagination_wrap">
+                                <ul class="pagination_nav ul_li_right">
+
+                                    @if (Model.CurrentPageForGrid > 1)
+                                    {
+                                        <li class="prev_btn">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = Model.CurrentPageForGrid - 1,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">
+                                                <i class="fa-regular fa-angle-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= Model.TotalPagesForGrid; i++)
+                                    {
+                                        <li class="@(Model.CurrentPageForGrid == i ? "active" : "")">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = i,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">@i</a>
+                                        </li>
+                                    }
+
+                                    @if (Model.CurrentPageForGrid < Model.TotalPagesForGrid)
+                                    {
+                                        <li class="next_btn">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = Model.CurrentPageForGrid + 1,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">
+                                                <i class="fa-regular fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade @(Model.ViewMode == "list" ? "show active" : "")" id="profile" role="tabpanel">
+                            <div class="product_layout2_wrap">
+                                @foreach (var itemList in Model.ProductsList)
+                                {
+                                    <div class="product_layout2">
+                                        <div class="item_image">
+                                            <div class="item_badge hot_badge">
+                                                <span>SALE</span>
+                                            </div>
+                                            <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">
+                                                <img src="~/Uploads/@itemList.ImageURL" alt="laptops.az">
+                                            </a>
+                                        </div>
+                                        <div class="item_content">
+                                            <h3 class="item_title">
+                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">@itemList.ProductName</a>
+                                            </h3>
+                                            <ul class="rating_star ul_li">
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                            </ul>
+                                            <p>
+                                                @itemList.Description
+                                            </p>
+                                            <div class="item_price">
+                                                <span> &#8380; @itemList.DiscountPrice</span>
+                                                <del> &#8380; @itemList.Price</del>
+                                            </div>
+                                            <ul class="item_btns_group ul_li">
+                                                <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">@ViewData["Text14"]</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="pagination_wrap">
+                                <ul class="pagination_nav ul_li_right">
+
+                                    @if (Model.CurrentPageForList > 1)
+                                    {
+                                        <li class="prev_btn">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = Model.CurrentPageForList - 1,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">
+                                                <i class="fa-regular fa-angle-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= Model.TotalPagesForList; i++)
+                                    {
+                                        <li class="@(Model.CurrentPageForList == i ? "active" : "")">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = i,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">@i</a>
+                                        </li>
+                                    }
+
+                                    @if (Model.CurrentPageForList < Model.TotalPagesForList)
+                                    {
+                                        <li class="next_btn">
+                                            <a href="@Url.Action("Index", new
+                                                     {
+                                                         viewMode = Model.ViewMode,
+                                                         page = Model.CurrentPageForList + 1,
+                                                         SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
+                                                         SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
+                                                         SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
+                                                         SelectedStorages = Context.Request.Query["SelectedStorages"].ToArray(),
+                                                         SelectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToArray(),
+                                                         SelectedDisplays = Context.Request.Query["SelectedDisplays"].ToArray(),
+                                                         SelectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToArray()
+                                                     })">
+                                                <i class="fa-regular fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+              </div>
+                    
+                    <div class="col-lg-3 order-lg-first">
+                        @{
+                            var selectedProcessors = Context.Request.Query["SelectedProcessors"].ToList();
+                            var selectedRAMs = Context.Request.Query["SelectedRAMs"].ToList();
+                            var selectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToList();
+                            var selectedStorages = Context.Request.Query["SelectedStorages"].ToList();
+                            var selectedMotherboards = Context.Request.Query["SelectedMotherboards"].ToList();
+                            var selectedDisplays = Context.Request.Query["SelectedDisplays"].ToList();
+                            var selectedOperatingSystems = Context.Request.Query["SelectedOperatingSystems"].ToList();
+                        }
+
+                        <aside class="sidebar_section ps-0 mt-lg-0">
+                            <div class="sb_widget p-3 border rounded shadow-sm">
+                                <h3 class="sb_widget_title mb-4">@ViewData["Text13"]</h3>
+                                <div class="filter_sidebar">
+
+                                    <form method="get" action="@Url.Action("Index", "Shop")">
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Processor</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var processor in Model.ShopFilterVM.Processor)
+                                                    {
+                                                        var processorId = "processor_" + System.Text.RegularExpressions.Regex.Replace(processor, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@processorId" name="SelectedProcessors" value="@processor"
+                                                                       @(selectedProcessors.Contains(processor) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@processorId">
+                                                                    @processor
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.Processor.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">RAM</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var ram in Model.ShopFilterVM.RAM)
+                                                    {
+                                                        var ramId = "ram_" + System.Text.RegularExpressions.Regex.Replace(ram, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@ramId" name="SelectedRAMs" value="@ram"
+                                                                       @(selectedRAMs.Contains(ram) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@ramId">
+                                                                    @ram
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.RAM.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Graphics Card</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var gc in Model.ShopFilterVM.GraphicsCard)
+                                                    {
+                                                        var gcId = "gc_" + System.Text.RegularExpressions.Regex.Replace(gc, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@gcId" name="SelectedGraphicsCards" value="@gc"
+                                                                       @(selectedGraphicsCards.Contains(gc) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@gcId">
+                                                                    @gc
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.GraphicsCard.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Storage</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var storage in Model.ShopFilterVM.Storage)
+                                                    {
+                                                        var storageId = "storage_" + System.Text.RegularExpressions.Regex.Replace(storage, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@storageId" name="SelectedStorages" value="@storage"
+                                                                       @(selectedStorages.Contains(storage) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@storageId">
+                                                                    @storage
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.Storage.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Motherboard</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var mb in Model.ShopFilterVM.Motherboard)
+                                                    {
+                                                        var mbId = "mb_" + System.Text.RegularExpressions.Regex.Replace(mb, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@mbId" name="SelectedMotherboards" value="@mb"
+                                                                       @(selectedMotherboards.Contains(mb) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@mbId">
+                                                                    @mb
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.Motherboard.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Display</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var display in Model.ShopFilterVM.Display)
+                                                    {
+                                                        var displayId = "display_" + System.Text.RegularExpressions.Regex.Replace(display, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@displayId" name="SelectedDisplays" value="@display"
+                                                                       @(selectedDisplays.Contains(display) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@displayId">
+                                                                    @display
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.Display.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="fs_widget mb-4">
+                                            <h5 class="fs_widget_title mb-3 text-primary fw-semibold">Operating System</h5>
+                                            <div style="max-height: 180px; overflow-y: auto; border: 1px solid #dee2e6; padding: 10px; border-radius: .25rem;">
+                                                <ul class="list-unstyled ps-0 mb-0">
+                                                    @foreach (var os in Model.ShopFilterVM.OperatingSystem)
+                                                    {
+                                                        var osId = "os_" + System.Text.RegularExpressions.Regex.Replace(os, "[^a-zA-Z0-9]", "");
+                                                        <li class="mb-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="@osId" name="SelectedOperatingSystems" value="@os"
+                                                                       @(selectedOperatingSystems.Contains(os) ? "checked" : "") />
+                                                                <label class="form-check-label" for="@osId">
+                                                                    @os
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (!Model.ShopFilterVM.OperatingSystem.Any())
+                                                    {
+                                                        <li class="text-muted"><small>Seçenek bulunmuyor.</small></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary w-100 mt-3">@ViewData["Text13"]</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </aside>
+
+
+
+
+                    </div>
+            </div>
+          </div>
+        </section>
+        <!-- product_section - end
+        ================================================== -->
+
+    <!-- newsletter_section - start
+================================================== -->
+    <section class="newsletter_section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col col-lg-6">
+                    <h2 class="newsletter_title text-white">
+                        <i class="icofont-paper-plane"></i>
+                        @ViewData["Text42"]
+                    </h2>
+                </div>
+                <div class="col col-lg-6">
+
+                    <div class="newsletter_form">
+                        <form method="post">
+                            <input asp-for="NewstellerPostDto.PhoneNumber" type="number" placeholder="@ViewData["Text9"]">
+                            <button type="submit" class="btn btn_danger">@ViewData["Text1"]</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- newsletter_section - end
+    ================================================== -->
+
+      </main>
+      <!-- main body - end
+      ================================================== -->

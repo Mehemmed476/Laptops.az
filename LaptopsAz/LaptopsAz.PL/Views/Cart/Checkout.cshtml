@@ -1,0 +1,75 @@
+@model LaptopsAz.Core.Models.Checkout
+
+<!-- main body - start
+      ================================================== -->
+      <main>
+
+        <!-- breadcrumb_section - start
+        ================================================== -->
+        <div class="breadcrumb_section">
+          <div class="container">
+            <ul class="breadcrumb_nav ul_li">
+              <li><a href="index.html">Laptops.az</a></li>
+              <li>@ViewData["Text2"]</li>
+            </ul>
+          </div>
+        </div>
+        <!-- breadcrumb_section - end
+        ================================================== -->
+
+        <!-- checkout_section - start
+        ================================================== -->
+        <section class="checkout_section section_space">
+          <div class="container">
+            <form method="post">
+              <div class="checkout_widget bg-light">
+                <h3 class="checkout_widget_title">@ViewData["Text3"]</h3>
+                <div class="row">
+                  <div class="col col-md-6 col-sm-6">
+                    <div class="form_item">
+                      <h4 class="input_title">@ViewData["Text4"]</h4>
+                      <input asp-for="FirstName" type="text" placeholder="@ViewData["Text4"] *">
+                    </div>
+                  </div>
+                  <div class="col col-md-6 col-sm-6">
+                    <div class="form_item">
+                      <h4 class="input_title">@ViewData["Text5"]</h4>
+                      <input asp-for="LastName" type="text" placeholder="@ViewData["Text5"] *">
+                    </div>
+                  </div>
+                </div>
+                <div class="form_item">
+                  <h4 class="input_title">@ViewData["Text6"]</h4>
+                  <input asp-for="City" type="text" placeholder="@ViewData["Text6"]">
+                </div>
+                <div class="form_item">
+                  <h4 class="input_title">@ViewData["Text7"] *</h4>
+                  <input asp-for="StreetAddress" type="text" placeholder="@ViewData["Text8"]">
+                  <input asp-for="ApartmentNumber" type="text" placeholder="Apartment, suite, unit">
+                </div>
+                <div class="form_item mb-5">
+                  <h4 class="input_title">@ViewData["Text16"] *</h4>
+                  <input asp-for="Email" type="email" name="email" placeholder="Email Adres">
+                  <input asp-for="Phone" type="tel" placeholder="@ViewData["Text9"]">
+                </div>
+                
+                <div class="form_item note_textarea mb-0">
+                  <h4 class="input_title">@ViewData["Text17"]</h4>
+                  <textarea asp-for="Notes"  placeholder="@ViewData["Text18"]"></textarea>
+                </div>
+              </div>
+
+              <div class="checkout_payment_method">
+                <div class="load_more">
+                  <button type="submit" class="btn btn_primary w-100">@ViewData["Text19"]</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+        <!-- checkout_section - end
+        ================================================== -->
+
+      </main>
+      <!-- main body - end
+      ================================================== -->
