@@ -467,23 +467,29 @@
         $(document).on("click", "#liveSearchResults ul li.live-search-item", function () {
             var selectedName = $(this).data("name");
             var productId = $(this).data("id");
-
+            var slug = $(this).data("slug");
             $("#searchInput").val(selectedName);
             $("#liveSearchResults").stop(true, true).fadeOut('fast', function() { $(this).empty(); });
 
             if (productId) {
-                window.location.href = '/ProductDetail/Index/' + productId; // Yönləndirmə URL-inizi yoxlayın
+                window.location.href = '/ProductDetail/Index/' + slug; // Yönləndirmə URL-inizi yoxlayın
             }
         });
 
         // Form submit edildikdə səhifənin yenilənməsinin qarşısını al
         $("#searchForm").on("submit", function (e) {
+            // Bu sətir səhifənin yenilənməsinin qarşısını alır ki, biz öz yönləndirməmizi edə bilək
             e.preventDefault();
-            // İstəsəniz, form submit edildikdə axtarış səhifəsinə yönləndirə bilərsiniz
-            // var query = $("#searchInput").val().trim();
-            // if (query.length > 0) {
-            //     window.location.href = '/Shop/Search?query=' + encodeURIComponent(query); // Axtarış səhifənizin URL-i
-            // }
+
+            // Axtarış qutusundakı mətni götürürük və başındakı/sonundakı boşluqları silirik
+            var axtarisSozu = $("#searchInput").val().trim();
+
+            // Əgər axtarış xanasına nəsə yazılıbsa...
+            if (axtarisSozu.length > 0) {
+                // ...istifadəçini Mağaza səhifəsinə yönləndiririk.
+                // Axtarılan sözü isə URL-in sonuna ?axtaris=... şəklində əlavə edirik.
+                window.location.href = '/Shop?search=' + encodeURIComponent(axtarisSozu);
+            }
         });
 
         // Axtarış qutusundan və ya nəticələrdən kənara kliklədikdə nəticələri gizlət

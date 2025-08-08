@@ -67,7 +67,7 @@ public class ProductSpecService : IProductSpecService
 
     public async Task<ICollection<ProductSpecGetDto>> GetByProductIdProductSpecsAsync(Guid productId)
     {
-        ICollection<ProductSpec> specs = await _productSpecReadRepository.GetAllByCondition(p => p.ProductID == productId && !p.IsDeleted).ToListAsync();
+        ICollection<ProductSpec> specs = await _productSpecReadRepository.GetAllByCondition(p => p.ProductID == productId && !p.IsDeleted, null).ToListAsync();
         return _mapper.Map<ICollection<ProductSpecGetDto>>(specs);
     }
 

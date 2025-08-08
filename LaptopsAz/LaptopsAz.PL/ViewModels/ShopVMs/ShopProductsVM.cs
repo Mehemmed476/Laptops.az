@@ -17,4 +17,5 @@ public class ShopProductsVM
     public int PageSizeForGrid { get; set; }
     public int TotalPagesForList => (int)Math.Ceiling((decimal)TotalCount / PageSizeForList);
     public int TotalPagesForGrid => (int)Math.Ceiling((decimal)TotalCount / PageSizeForGrid);
+    public string? CurrentSearch { get; set; }
 }

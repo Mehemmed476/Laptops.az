@@ -22,4 +22,12 @@ public class ProductReadRepository : ReadRepository<Product>, IProductReadReposi
             Text = d.ProductName
         }).ToListAsync();
     }
+
+    public async Task<Product> GetBySlugAsync(string slug)
+    {
+        var query = Table.AsQueryable();
+        
+        Product? entity = await query.FirstOrDefaultAsync(t => t.Slug == slug);
+        return entity;
+    }
 }

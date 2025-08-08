@@ -229,6 +229,10 @@ namespace LaptopsAz.DL.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
@@ -536,13 +540,13 @@ namespace LaptopsAz.DL.Migrations
                         {
                             Id = "c10c9801-9957-4018-8e48-0c7812d47b50",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e4fc0d7-cf50-4931-b4ac-90b47d600297",
+                            ConcurrencyStamp = "e8361564-6bb5-48f4-88ba-f3b199e9d7d0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFMQ6UZ8gN6914sO830Spy8Er5taBSz2S7SroldF9f1kMqIv86vZqWVPjBIqXI9UKQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELNXFEy/lnoC2pyLcgZQ0oc8tvh4hSeRl5xp0rrmyfwrw+x54IwPF6Q8ySjCaPFHGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0d35b7e-1883-4d7b-98f3-146e50868db6",
+                            SecurityStamp = "302fc5b2-ed89-43c8-982d-e14664589b1c",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

@@ -29,14 +29,14 @@ public class ProductPhotoService : IProductPhotoService
     public async Task<ICollection<ProductPhotoGetDto>> GetAllProductPhoto(Guid productId)
     {
         ICollection<ProductPhoto> productPhotos = await _productPhotoReadRepository
-            .GetAllByCondition(p => p.ProductId == productId).ToListAsync();
+            .GetAllByCondition(p => p.ProductId == productId, null).ToListAsync();
         
         return _mapper.Map<ICollection<ProductPhotoGetDto>>(productPhotos);
     }
 
     public async Task<ICollection<ProductPhotoGetDto>> GetByProductIdProductPhotosAsync(Guid productId)
     {
-        ICollection<ProductPhoto> photos = await _productPhotoReadRepository.GetAllByCondition(p => p.ProductId == productId && !p.IsDeleted).ToListAsync();
+        ICollection<ProductPhoto> photos = await _productPhotoReadRepository.GetAllByCondition(p => p.ProductId == productId && !p.IsDeleted, null).ToListAsync();
         return _mapper.Map<ICollection<ProductPhotoGetDto>>(photos);
     }
 

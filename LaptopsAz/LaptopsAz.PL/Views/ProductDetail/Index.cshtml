@@ -94,7 +94,7 @@
                   </div>
 
                   <ul class="default_btns_group ul_li">
-                    <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Product.Id">@ViewData["Text10"]</a></li>
+                    <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@Model.Product.Slug">@ViewData["Text10"]</a></li>
                   </ul>
                 </div>
               </div>
@@ -189,14 +189,14 @@
                   </div>
                   <div class="item_content">
                     <h3 class="item_title">
-                      <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@latest.Id">@latest.ProductName</a>
+                      <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@latest.Slug">@latest.ProductName</a>
                     </h3>
                     <div class="item_price">
                       <span> &#8380; @latest.DiscountPrice</span>
                       <del> &#8380; @latest.Price</del>
                     </div>
                     <ul class="item_btns_group ul_li">
-                      <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@latest.Id">@ViewData["Text10"]</a></li>
+                      <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@latest.Slug">@ViewData["Text10"]</a></li>
                     </ul>
                   </div>
                 </div>

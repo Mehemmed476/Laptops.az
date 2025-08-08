@@ -6,4 +6,5 @@ namespace LaptopsAz.DL.Repositories.Abstractions;
 public interface IProductReadRepository : IReadRepository<Product>
 {
     Task<ICollection<SelectListItem>> SelectAllProductAsync();
+    Task<Product> GetBySlugAsync(string slug);
 }

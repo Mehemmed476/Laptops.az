@@ -68,7 +68,7 @@ public class ReviewService : IReviewService
 
     public async Task<ICollection<ReviewGetDto>> GetByProductIdReviewsAsync(Guid productId)
     {
-        ICollection<Review> photos = await _reviewReadRepository.GetAllByCondition(p => p.ProductID == productId && !p.IsDeleted).ToListAsync();
+        ICollection<Review> photos = await _reviewReadRepository.GetAllByCondition(p => p.ProductID == productId && !p.IsDeleted, null).ToListAsync();
         return _mapper.Map<ICollection<ReviewGetDto>>(photos);
     }
 

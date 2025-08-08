@@ -42,7 +42,7 @@
                         <div class="short-item">
                             @* data-src kullanarak gerçek URL'yi geciktiriyoruz *@
                             <iframe
-                                data-src="https://www.youtube.com/embed/@item21.Id"
+                                data-src="https://www.youtube.com/embed/@item21.Link"
                                 title="@item21.Title"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@newProducts.Id">@newProducts.ProductName</a>
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@newProducts.Slug">@newProducts.ProductName</a>
                                         </h3>
                                         <ul class="rating_star ul_li">
                                             <li><i class="fa-solid fa-star"></i></li>
@@ -142,7 +142,7 @@
                                             <del>₼ @newProducts.Price</del>
                                         </div>
                                         <ul class="item_btns_group ul_li">
-                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@newProducts.Id">@ViewData["Text34"]</a></li>
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@newProducts.Slug">@ViewData["Text34"]</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 </div>
                                 <div class="item_content">
                                     <h3 class="item_title">
-                                        <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item10.Id">@item10.ProductName</a>
+                                        <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item10.Slug">@item10.ProductName</a>
                                     </h3>
                                     <ul class="rating_star ul_li">
                                         <li><i class="fa-solid fa-star"></i></li>
@@ -200,7 +200,7 @@
                                         <del> ₼ @item10.Price</del>
                                     </div>
                                     <ul class="item_btns_group ul_li">
-                                        <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item10.Id">@ViewData["Text34"]</a></li>
+                                        <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item10.Slug">@ViewData["Text34"]</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item11.Id">@item11.ProductName</a>
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item11.Slug">@item11.ProductName</a>
                                         </h3>
                                         <ul class="rating_star ul_li">
                                             <li><i class="fa-solid fa-star"></i></li>
@@ -240,7 +240,7 @@
                                             <del> ₼ @item11.Price</del>
                                         </div>
                                         <ul class="item_btns_group ul_li">
-                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item11.Id">@ViewData["Text34"]</a></li>
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item11.Slug">@ViewData["Text34"]</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -266,7 +266,7 @@
                                     </div>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item12.Id">@item12.ProductName</a>
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item12.Slug">@item12.ProductName</a>
                                         </h3>
                                         <ul class="rating_star ul_li">
                                             <li><i class="fa-solid fa-star"></i></li>
@@ -280,7 +280,7 @@
                                             <del> ₼ @item12.Price</del>
                                         </div>
                                         <ul class="item_btns_group ul_li">
-                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item12.Id">@ViewData["Text34"]</a></li>
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item12.Slug">@ViewData["Text34"]</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -306,7 +306,7 @@
                                     </div>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@item13.Id">@item13.ProductName</a>
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item13.Slug">@item13.ProductName</a>
                                         </h3>
                                         <ul class="rating_star ul_li">
                                             <li><i class="fa-solid fa-star"></i></li>
@@ -320,7 +320,7 @@
                                             <del> ₼ @item13.Price</del>
                                         </div>
                                         <ul class="item_btns_group ul_li">
-                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item13.Id">@ViewData["Text34"]</a></li>
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item13.Slug">@ViewData["Text34"]</a></li>
                                         </ul>
                                     </div>
                                 </div>

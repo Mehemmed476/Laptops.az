@@ -24,4 +24,5 @@ public interface IProductService
     Task<ProductGetDto> GetByIdProductAsync(Guid id);
     Task<ICollection<SelectListItem>> SelectAllProduct();
     Task<IEnumerable<ProductGetDto>> GetAllProducts();
+    Task<ProductGetDto> GetBySlugAsync(string slug);
 }

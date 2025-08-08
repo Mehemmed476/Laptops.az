@@ -9,6 +9,7 @@ public class ProductGetDto
     public bool IsDeleted { get; set; }
     public DateTime CreatedAt { get; set; }
     public string ProductName { get; set; }
+    public string Slug { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; }
     public decimal DiscountPrice { get; set; }

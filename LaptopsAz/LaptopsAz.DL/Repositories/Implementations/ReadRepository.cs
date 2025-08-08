@@ -55,9 +55,10 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity, new()
             return query;
         }
 
-        public IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition, int page, int size, bool isTracking = true, params string[] includes)
+        public IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool isTracking = true, params string[] includes)
         {
-            var query = Table.Where(condition).Skip(page * size).Take(size);
+            var query = Table.Where(condition);
+            
             if (!isTracking)
             {
                 query.AsNoTracking();
@@ -71,6 +72,34 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity, new()
                 }
             }
 
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            
+            return query;
+        }
+
+        public IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition, int page, int size, bool isTracking = true,
+            params string[] includes)
+        {
+            var query = Table.Where(condition);
+            
+            if (!isTracking)
+            {
+                query.AsNoTracking();
+            }
+
+            if (includes is not null && includes.Length > 0)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+
+            query = query.Skip(page * size).Take(size);
+            
             return query;
         }
 

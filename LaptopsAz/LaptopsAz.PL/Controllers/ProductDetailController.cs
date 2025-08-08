@@ -31,7 +31,7 @@ public class ProductDetailController : Controller
         _newstellerService = newstellerService;
     }
     
-    public async Task<IActionResult> Index(Guid id)
+    public async Task<IActionResult> Index(string slug)
     {
         try
         {
@@ -45,10 +45,10 @@ public class ProductDetailController : Controller
             ViewData["Text16"] = _localizer["Text16"];
             ViewData["Text17"] = _localizer["Text17"];
             
-            ProductGetDto product = await _productService.GetByIdProductAsync(id);
-            ICollection<ProductSpecGetDto> specs = await _productSpecService.GetByProductIdProductSpecsAsync(id);
-            ICollection<ReviewGetDto> reviews = await _reviewService.GetByProductIdReviewsAsync(id);
-            ICollection<ProductPhotoGetDto> photos = await _productPhotoService.GetByProductIdProductPhotosAsync(id);
+            ProductGetDto product = await _productService.GetBySlugAsync(slug);
+            ICollection<ProductSpecGetDto> specs = await _productSpecService.GetByProductIdProductSpecsAsync(product.Id);
+            ICollection<ReviewGetDto> reviews = await _reviewService.GetByProductIdReviewsAsync(product.Id);
+            ICollection<ProductPhotoGetDto> photos = await _productPhotoService.GetByProductIdProductPhotosAsync(product.Id);
             ICollection<ProductGetDto> latestProducts = await _productService.GetLatestProducts(5);
             
             ProductDetailVM productVm = new ProductDetailVM()
@@ -68,7 +68,7 @@ public class ProductDetailController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index(ProductDetailVM productDetailVm, Guid id)
+    public async Task<IActionResult> Index(ProductDetailVM productDetailVm, string slug)
     {
         try
         {
@@ -82,9 +82,17 @@ public class ProductDetailController : Controller
             ViewData["Text16"] = _localizer["Text16"];
             ViewData["Text17"] = _localizer["Text17"];
 
+            
+            
+            ProductGetDto product = await _productService.GetBySlugAsync(slug);
+            ICollection<ProductSpecGetDto> specs = await _productSpecService.GetByProductIdProductSpecsAsync(product.Id);
+            ICollection<ReviewGetDto> reviews = await _reviewService.GetByProductIdReviewsAsync(product.Id);
+            ICollection<ProductPhotoGetDto> photos = await _productPhotoService.GetByProductIdProductPhotosAsync(product.Id);
+            ICollection<ProductGetDto> latestProducts = await _productService.GetLatestProducts(5);
+            
             if (productDetailVm.ReviewPost is not null)
             {
-                productDetailVm.ReviewPost.ProductID = id;
+                productDetailVm.ReviewPost.ProductID = product.Id;
                 await _reviewService.CreateReviewAsync(productDetailVm.ReviewPost);
             }
             
@@ -92,12 +100,6 @@ public class ProductDetailController : Controller
             {
                 await _newstellerService.CreateNewstellerAsync(productDetailVm.NewstellerPostDto);
             }
-            
-            ProductGetDto product = await _productService.GetByIdProductAsync(id);
-            ICollection<ProductSpecGetDto> specs = await _productSpecService.GetByProductIdProductSpecsAsync(id);
-            ICollection<ReviewGetDto> reviews = await _reviewService.GetByProductIdReviewsAsync(id);
-            ICollection<ProductPhotoGetDto> photos = await _productPhotoService.GetByProductIdProductPhotosAsync(id);
-            ICollection<ProductGetDto> latestProducts = await _productService.GetLatestProducts(5);
             
             productDetailVm.Product = product;
             productDetailVm.ProductSpecs = specs;

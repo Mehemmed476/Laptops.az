@@ -1,6 +1,7 @@
 using AutoMapper;
 using LaptopsAz.BL.DTOs.ProductDtos;
 using LaptopsAz.BL.ExternalServices.Abstractions;
+using LaptopsAz.BL.Helpers;
 using LaptopsAz.BL.Services.Abstractions;
 using LaptopsAz.Core.Enums;
 using LaptopsAz.Core.Models;
@@ -35,6 +36,7 @@ public class ProductService : IProductService
         Product product = _mapper.Map<Product>(productPostDto);
         product.CreatedAt = DateTime.UtcNow.AddHours(4);
         product.ImageURL = await _fileService.SaveFileAsync(productPostDto.Image, _webHostEnvironment.WebRootPath,new[] { ".png", ".jpg", ".jpeg" } );
+        product.Slug = SlugHelper.GenerateSlug(product.ProductName);
         await _productWriteRepository.CreateAsync(product);
         var result = await _productWriteRepository.SaveChangesAsync();
 
@@ -90,10 +92,16 @@ public class ProductService : IProductService
 
     public async Task<ICollection<ProductGetDto>> GetAllActiveProductByIds(List<Guid> productIds, int size = 10, int page = 0, Guid? categoryId = null)
     {
-        var query = _productReadRepository.GetAllByCondition(p => productIds.Contains(p.Id) && !p.IsDeleted);
+        var query = _productReadRepository.GetAllByCondition(
+            condition: p => productIds.Contains(p.Id) && !p.IsDeleted && (categoryId == null || p.CategoryID == categoryId),
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt)
+        );
+
 
         if (categoryId != null)
+        {
             query = query.Where(p => p.CategoryID == categoryId);
+        }
 
         var products = await query
             .Skip(page * size)
@@ -112,31 +120,46 @@ public class ProductService : IProductService
 
     public async Task<ICollection<ProductGetDto>> GetLatestProducts(int count)
     {
-        ICollection<Product> products = await _productReadRepository.GetAllByCondition(c => !c.IsDeleted ).OrderByDescending(c => c.CreatedAt).Take(count).ToListAsync();
+        ICollection<Product> products = await _productReadRepository.GetAllByCondition(
+            condition: c => !c.IsDeleted, 
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+            .Take(count).ToListAsync();
         return _mapper.Map<ICollection<ProductGetDto>>(products);
     }
 
     public async Task<ICollection<ProductGetDto>> GetNewestProducts(int count)
     {
-        ICollection<Product> products = await _productReadRepository.GetAllByCondition(c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.NewProduct).OrderByDescending(c => c.CreatedAt).Take(count).ToListAsync();
+        ICollection<Product> products = await _productReadRepository.GetAllByCondition(
+            condition: c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.NewProduct,
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+            .Take(count).ToListAsync();
         return _mapper.Map<ICollection<ProductGetDto>>(products);
     }
 
     public async Task<ICollection<ProductGetDto>> GetOurProducts(int count)
     {
-        ICollection<Product> products = await _productReadRepository.GetAllByCondition(c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.OurProduct).OrderByDescending(c => c.CreatedAt).Take(count).ToListAsync();
+        ICollection<Product> products = await _productReadRepository.GetAllByCondition(
+            condition: c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.OurProduct,
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+            .Take(count).ToListAsync();
         return _mapper.Map<ICollection<ProductGetDto>>(products);
     }
 
     public async Task<ICollection<ProductGetDto>> GetHotDeals(int count)
     {
-        ICollection<Product> products = await _productReadRepository.GetAllByCondition(c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.HotDeal).OrderByDescending(c => c.CreatedAt).Take(count).ToListAsync();
+        ICollection<Product> products = await _productReadRepository.GetAllByCondition(
+            condition: c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.HotDeal,
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+            .Take(count).ToListAsync();
         return _mapper.Map<ICollection<ProductGetDto>>(products);
     }
 
     public async Task<ICollection<ProductGetDto>> GetBestSellers(int count)
     {
-        ICollection<Product> products = await _productReadRepository.GetAllByCondition(c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.BestSeller).OrderByDescending(c => c.CreatedAt).Take(count).ToListAsync();
+        ICollection<Product> products = await _productReadRepository.GetAllByCondition(
+            condition: c => !c.IsDeleted && c.HomePageTag == HomePageTagEnum.BestSeller,
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+            .Take(count).ToListAsync();
         return _mapper.Map<ICollection<ProductGetDto>>(products);
     }
 
@@ -180,7 +203,14 @@ public class ProductService : IProductService
     public async Task UpdateProductAsync(ProductPutDto productPutDto)
     {
         Product oldProduct = await _productReadRepository.GetByIdAsync(productPutDto.Id, false);
+        
         Product product = _mapper.Map<Product>(productPutDto);
+        
+        if (oldProduct.ProductName != productPutDto.ProductName)
+        {
+            product.Slug = SlugHelper.GenerateSlug(productPutDto.ProductName);
+        }
+        
         if (productPutDto.Image != null && productPutDto.Image.Length > 0)
         {
             product.ImageURL = await _fileService.SaveFileAsync(
@@ -212,5 +242,14 @@ public class ProductService : IProductService
     {
         IEnumerable<Product> products = await _productReadRepository.GetAllAsync();
         return _mapper.Map<IEnumerable<ProductGetDto>>(products);
+    }
+
+    public async Task<ProductGetDto> GetBySlugAsync(string slug)
+    {
+        Product? product = await _productReadRepository.GetBySlugAsync(slug);
+        
+        if (product == null) throw new Exception("Product not found");
+        
+        return _mapper.Map<ProductGetDto>(product);
     }
 }

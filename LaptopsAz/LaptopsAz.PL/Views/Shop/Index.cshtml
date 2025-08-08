@@ -3,6 +3,7 @@
 
 <!-- main body - start
 ================================================== -->
+
 <main>
     <!-- breadcrumb_section - start
     ================================================== -->
@@ -89,7 +90,7 @@
                                         </div>
                                         <div class="item_content">
                                             <h3 class="item_title">
-                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemGrid.Id">@itemGrid.ProductName</a>
+                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@itemGrid.Slug">@itemGrid.ProductName</a>
                                             </h3>
                                             <ul class="rating_star ul_li">
                                                 <li><i class="fa-solid fa-star"></i></li>
@@ -103,7 +104,7 @@
                                                 <del> &#8380; @itemGrid.Price</del>
                                             </div>
                                             <ul class="item_btns_group ul_li">
-                                                <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@itemGrid.Id">@ViewData["Text14"]</a></li>
+                                                <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@itemGrid.Slug">@ViewData["Text14"]</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -121,6 +122,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = Model.CurrentPageForGrid - 1,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
@@ -141,6 +143,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = i,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
@@ -159,6 +162,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = Model.CurrentPageForGrid + 1,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
@@ -184,13 +188,13 @@
                                             <div class="item_badge hot_badge">
                                                 <span>SALE</span>
                                             </div>
-                                            <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">
+                                            <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@itemList.Slug">
                                                 <img src="~/Uploads/@itemList.ImageURL" alt="laptops.az">
                                             </a>
                                         </div>
                                         <div class="item_content">
                                             <h3 class="item_title">
-                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">@itemList.ProductName</a>
+                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@itemList.Slug">@itemList.ProductName</a>
                                             </h3>
                                             <ul class="rating_star ul_li">
                                                 <li><i class="fa-solid fa-star"></i></li>
@@ -207,7 +211,7 @@
                                                 <del> &#8380; @itemList.Price</del>
                                             </div>
                                             <ul class="item_btns_group ul_li">
-                                                <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-id="@itemList.Id">@ViewData["Text14"]</a></li>
+                                                <li><a class="addtocart_btn" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@itemList.Slug">@ViewData["Text14"]</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -224,6 +228,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = Model.CurrentPageForList - 1,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
@@ -244,6 +249,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = i,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),
@@ -262,6 +268,7 @@
                                                      {
                                                          viewMode = Model.ViewMode,
                                                          page = Model.CurrentPageForList + 1,
+                                                         search = Model.CurrentSearch,
                                                          SelectedProcessors = Context.Request.Query["SelectedProcessors"].ToArray(),
                                                          SelectedRAMs = Context.Request.Query["SelectedRAMs"].ToArray(),
                                                          SelectedGraphicsCards = Context.Request.Query["SelectedGraphicsCards"].ToArray(),

@@ -39,7 +39,7 @@ public class CheckoutController : Controller
                     .ToList() ?? new List<Guid>();
 
                 var products = await _productReadRepository
-                    .GetAllByCondition(p => productIds.Contains(p.Id))
+                    .GetAllByCondition(p => productIds.Contains(p.Id), null)
                     .ToListAsync();
                 viewModels.Add(new CheckoutWithProductsVM
                 {
@@ -76,7 +76,7 @@ public class CheckoutController : Controller
                     .ToList() ?? new List<Guid>();
 
                 var products = await _productReadRepository
-                    .GetAllByCondition(p => productIds.Contains(p.Id))
+                    .GetAllByCondition(p => productIds.Contains(p.Id), null)
                     .ToListAsync();
                 viewModels.Add(new CheckoutWithProductsVM
                 {

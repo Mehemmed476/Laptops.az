@@ -3,9 +3,11 @@ using LaptopsAz.BL.DTOs.ProductSpecDtos;
 using LaptopsAz.BL.Services.Abstractions;
 using LaptopsAz.Core.Enums;
 using LaptopsAz.Core.Models;
+using LaptopsAz.DL.Contexts;
 using LaptopsAz.DL.Repositories.Abstractions;
 using LaptopsAz.PL.ViewModels.ShopVMs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
@@ -28,7 +30,9 @@ public class ShopController : Controller
         _localizer = localizer;
     }
 
+    
     public async Task<IActionResult> Index(
+    string? search = null, 
     int page = 1, 
     string viewMode = "grid",
     Guid? categoryId = null,
@@ -39,8 +43,7 @@ public class ShopController : Controller
     List<string>? SelectedMotherboards = null,
     List<string>? SelectedDisplays = null,
     List<string>? SelectedOperatingSystems = null
-    )
-    
+)
 {
     try
     {
@@ -88,11 +91,22 @@ public class ShopController : Controller
         ViewData["Text42"] = _localizer["Text42"];
         
         var activeProductIds = await _productReadRepository
-            .GetAllByCondition(p => !p.IsDeleted && (categoryId == null || p.CategoryID == categoryId))
+            .GetAllByCondition(
+                condition: p => !p.IsDeleted &&
+                               (categoryId == null || p.CategoryID == categoryId) &&
+                               (search == null || p.ProductName.ToLower().Contains(search.ToLower())),
+                orderBy: q => q.OrderByDescending(p => p.CreatedAt)) 
             .Select(p => p.Id)
             .ToListAsync();
 
-        IQueryable<ProductSpec> specs = _productSpecService.GetAllByCondition(p => !p.IsDeleted && activeProductIds.Contains(p.ProductID));
+        if (!string.IsNullOrEmpty(search))
+        {
+            ViewData["CurrentSearch"] = search;
+        }
+
+        IQueryable<ProductSpec> specs = _productSpecService.GetAllByCondition(
+            condition: p => !p.IsDeleted && activeProductIds.Contains(p.ProductID),
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt));
         
         var filteredProductIds = activeProductIds.AsEnumerable();
 
@@ -178,7 +192,9 @@ public class ShopController : Controller
 
         var productsGrid = await _productService.GetAllActiveProductByIds(filteredProductIdsList, 12, page - 1, categoryId);
         
-        IQueryable<ProductSpec> specsForFilters = _productSpecService.GetAllByCondition(p => !p.IsDeleted && filteredProductIdsList.Contains(p.ProductID));
+        IQueryable<ProductSpec> specsForFilters = _productSpecService.GetAllByCondition(
+            condition: p => !p.IsDeleted && filteredProductIdsList.Contains(p.ProductID),
+            orderBy: q => q.OrderByDescending(p => p.CreatedAt));
 
         ShopFilterVM filters = new ShopFilterVM()
         {
@@ -235,7 +251,8 @@ public class ShopController : Controller
             CurrentPageForGrid = page,
             CurrentPageForList = page,
             TotalCount = totalCount,
-            ViewMode = viewMode
+            ViewMode = viewMode,
+            CurrentSearch = search
         };
 
         return View(shopProductsVm);
@@ -258,8 +275,13 @@ public class ShopController : Controller
             // Məhsulları və filtrləri yenidən yüklə
             ICollection<ProductGetDto> productsList = await _productService.GetAllActiveProduct(5, page, categoryId);
             ICollection<ProductGetDto> productsGrid = await _productService.GetAllActiveProduct(12, page, categoryId);
-            var activeProductIds = await _productReadRepository.GetAllByCondition(p => !p.IsDeleted).Select(p => p.Id).ToListAsync();
-            IQueryable<ProductSpec> specs = _productSpecService.GetAllByCondition(p => !p.IsDeleted && activeProductIds.Contains(p.ProductID));
+            var activeProductIds = await _productReadRepository.GetAllByCondition(
+                condition: p => !p.IsDeleted,
+                orderBy: q => q.OrderByDescending(p => p.CreatedAt))
+                .Select(p => p.Id).ToListAsync();
+            IQueryable<ProductSpec> specs = _productSpecService.GetAllByCondition(
+                condition: p => !p.IsDeleted && activeProductIds.Contains(p.ProductID),
+                orderBy: q => q.OrderByDescending(p => p.CreatedAt));
 
             ShopFilterVM filters = new ShopFilterVM()
             {
@@ -294,7 +316,9 @@ public class ShopController : Controller
             return Json(new List<object>());
         }
 
-        var products = _productReadRepository.GetAllByCondition(p => p.ProductName.Contains(searchTerm))
+        var products = _productReadRepository.GetAllByCondition(
+                condition: p => p.ProductName.Contains(searchTerm),
+                orderBy: q => q.OrderByDescending(p => p.CreatedAt))
             .Select(p => new { 
                 id = p.Id, 
                 name = p.ProductName,

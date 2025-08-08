@@ -70,7 +70,7 @@ public class CategoryService : ICategoryService
 
     public async Task<ICollection<CategoryGetDto>> GetTopCategoriesAsync()
     {
-        ICollection<Category> categorys = await _categoryReadRepository.GetAllByCondition(c => !c.IsDeleted && c.IsTop).Take(10).ToListAsync();
+        ICollection<Category> categorys = await _categoryReadRepository.GetAllByCondition(c => !c.IsDeleted && c.IsTop, null).Take(10).ToListAsync();
         return _mapper.Map<ICollection<CategoryGetDto>>(categorys);
     }
 
