@@ -19,9 +19,10 @@ public class ProductService : IProductService
     private readonly IMapper _mapper;
     private readonly IFileService _fileService;
     private readonly IProductSpecWriteRepository _productSpecWriteRepository;
+    private readonly IProductPhotoWriteRepository _productPhotoWriteRepository;
     IWebHostEnvironment _webHostEnvironment;
     
-    public ProductService(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IMapper mapper, IFileService fileService, IWebHostEnvironment webHostEnvironment, IProductSpecWriteRepository productSpecWriteRepository)
+    public ProductService(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IMapper mapper, IFileService fileService, IWebHostEnvironment webHostEnvironment, IProductSpecWriteRepository productSpecWriteRepository, IProductPhotoWriteRepository productPhotoWriteRepository)
     {
         _productReadRepository = productReadRepository;
         _productWriteRepository = productWriteRepository;
@@ -29,6 +30,7 @@ public class ProductService : IProductService
         _fileService = fileService;
         _webHostEnvironment = webHostEnvironment;
         _productSpecWriteRepository = productSpecWriteRepository;
+        _productPhotoWriteRepository = productPhotoWriteRepository;
     }
 
     public async Task<Product> CreateProductAsync(ProductPostDto productPostDto)
@@ -202,34 +204,56 @@ public class ProductService : IProductService
 
     public async Task UpdateProductAsync(ProductPutDto productPutDto)
     {
-        Product oldProduct = await _productReadRepository.GetByIdAsync(productPutDto.Id, false);
-        
-        Product product = _mapper.Map<Product>(productPutDto);
-        
+        // 1. Mövcud məhsulu bazadan tapırıq. Bu, ən təhlükəsiz yoldur.
+        Product? oldProduct = await _productReadRepository.GetByIdAsync(productPutDto.Id, true); // true -> tracking aktiv olsun
+        if (oldProduct == null)
+        {
+            throw new Exception("Product not found");
+        }
+        productPutDto.ImageURL = oldProduct.ImageURL;
+        // 2. DTO-dan gələn məlumatları mövcud obyektin üzərinə yazırıq (yenisini yaratmırıq)
+        _mapper.Map(productPutDto, oldProduct);
+
+        // 3. Əgər məhsul adı dəyişibsə, yeni slug yaradırıq
         if (oldProduct.ProductName != productPutDto.ProductName)
         {
-            product.Slug = SlugHelper.GenerateSlug(productPutDto.ProductName);
+            oldProduct.Slug = SlugHelper.GenerateSlug(productPutDto.ProductName);
         }
         
+        // 4. Əgər yeni şəkil yüklənibsə...
         if (productPutDto.Image != null && productPutDto.Image.Length > 0)
         {
-            product.ImageURL = await _fileService.SaveFileAsync(
+            // a) Faylı serverə yükləyirik
+            var newImageURL = await _fileService.SaveFileAsync(
                 productPutDto.Image,
                 _webHostEnvironment.WebRootPath,
                 new[] { ".png", ".jpg", ".jpeg" });
+
+            // b) Əsas məhsulun "cover" şəklini yeniləyirik
+            oldProduct.ImageURL = newImageURL;
+
+            // c) Həmin şəkli həm də ProductPhotos cədvəlinə əlavə edirik
+            var newProductPhoto = new ProductPhoto
+            {
+                PhotoURL = newImageURL,
+                ProductId = oldProduct.Id,
+                CreatedAt = DateTime.UtcNow.AddHours(4) // Baku vaxtı
+            };
+            await _productPhotoWriteRepository.CreateAsync(newProductPhoto);
         }
+
         else
         {
-            product.ImageURL = oldProduct.ImageURL;
+            oldProduct.ImageURL = productPutDto.ImageURL;
         }
-        product.CreatedAt = oldProduct.CreatedAt;
-        _productWriteRepository.Update(product);
+
+        _productWriteRepository.Update(oldProduct);
 
         var result = await _productWriteRepository.SaveChangesAsync();
 
         if (result == 0)
         {
-            throw new Exception("Product not created");
+            throw new Exception("Product could not be updated"); 
         }
     }
     

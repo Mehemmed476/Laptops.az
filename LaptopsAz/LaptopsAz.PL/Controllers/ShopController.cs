@@ -323,7 +323,8 @@ public class ShopController : Controller
                 id = p.Id, 
                 name = p.ProductName,
                 imageUrl = p.ImageURL, 
-                price = p.DiscountPrice      
+                price = p.DiscountPrice,
+                slug = p.Slug,
             })
             .Take(10) 
             .ToList();

@@ -3,11 +3,11 @@
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    var currentUrl = Context.Request.Path.ToString().ToLower();
-    bool isHomePage = currentUrl == "/" || currentUrl == "/home" || currentUrl == "/home/index";
-    bool isShopPage = currentUrl.StartsWith("/shop");
-    bool isAboutPage = currentUrl.Contains("/aboutus");
-    bool isContactPage = currentUrl.Contains("/contact");
+var currentUrl = Context.Request.Path.ToString().ToLower();
+bool isHomePage = currentUrl == "/" || currentUrl == "/home" || currentUrl == "/home/index";
+bool isShopPage = currentUrl.StartsWith("/shop");
+bool isAboutPage = currentUrl.Contains("/aboutus");
+bool isContactPage = currentUrl.Contains("/contact");
 }
 <!doctype html>
 <html lang="en">
@@ -20,48 +20,48 @@
     @RenderSection("meta", required: false)
     @if (isHomePage)
     {
-        <title>laptops.az - Azərbaycanda 1 nömrəli laptop mağazası</title>
-        <meta name="description" content="Bakıda və Azərbaycanda ən keyfiyyətli və ucuz laptoplar - yalnız laptops.az saytında!" />
-        <meta name="keywords" content="laptop, laptops.az, ucuz laptop, notebook, oyun laptopu, biznes laptop, Bakı" />
-        <meta property="og:title" content="laptops.az - Azərbaycanda #1 laptop mağazası" />
-        <meta property="og:description" content="Orijinal və zəmanətli laptopları ən yaxşı qiymətlərlə alın." />
-        <meta property="og:image" content="@(Url.Content("~/images/seo/home-banner.jpg"))" />
+    <title>laptops.az - Azərbaycanda 1 nömrəli laptop mağazası</title>
+    <meta name="description" content="Bakıda və Azərbaycanda ən keyfiyyətli və ucuz laptoplar - yalnız laptops.az saytında!" />
+    <meta name="keywords" content="laptop, laptops.az, ucuz laptop, notebook, oyun laptopu, biznes laptop, Bakı" />
+    <meta property="og:title" content="laptops.az - Azərbaycanda #1 laptop mağazası" />
+    <meta property="og:description" content="Orijinal və zəmanətli laptopları ən yaxşı qiymətlərlə alın." />
+    <meta property="og:image" content="@(Url.Content("~/images/seo/home-banner.jpg"))" />
     }
     else if (isShopPage)
     {
-        <title>Laptoplar | laptops.az</title>
-        <meta name="description" content="ASUS, Lenovo, HP və digər markalardan sərfəli qiymətlərlə laptoplar. Tələbəyə, ofisə, oyuna uyğun modellər." />
-        <meta name="keywords" content="laptoplar, ucuz laptop, Bakı laptop mağazası, oyun laptopu, tələbə laptopu, laptops.az" />
-        <meta property="og:title" content="Laptoplar | laptops.az" />
-        <meta property="og:description" content="Ən yeni və sərfəli laptop modelləri laptops.az saytında." />
-        <meta property="og:image" content="@(Url.Content("~/images/seo/shop-banner.jpg"))" />
+    <title>Laptoplar | laptops.az</title>
+    <meta name="description" content="ASUS, Lenovo, HP və digər markalardan sərfəli qiymətlərlə laptoplar. Tələbəyə, ofisə, oyuna uyğun modellər." />
+    <meta name="keywords" content="laptoplar, ucuz laptop, Bakı laptop mağazası, oyun laptopu, tələbə laptopu, laptops.az" />
+    <meta property="og:title" content="Laptoplar | laptops.az" />
+    <meta property="og:description" content="Ən yeni və sərfəli laptop modelləri laptops.az saytında." />
+    <meta property="og:image" content="@(Url.Content("~/images/seo/shop-banner.jpg"))" />
     }
     else if (isAboutPage)
     {
-        <title>Haqqımızda | laptops.az</title>
-        <meta name="description" content="laptops.az — Azərbaycanda laptop satışında lider. Bizim haqqımızda ətraflı məlumat üçün bu səhifəyə baxın." />
-        <meta name="keywords" content="laptops.az haqqımızda, laptop mağazası, kompüter satışı, texnologiya şirkəti" />
-        <meta property="og:title" content="Haqqımızda | laptops.az" />
-        <meta property="og:description" content="laptops.az – keyfiyyət, etibar və sərfəli qiymət prinsipləri ilə fəaliyyət göstərir." />
-        <meta property="og:image" content="@(Url.Content("~/images/seo/about.jpg"))" />
+    <title>Haqqımızda | laptops.az</title>
+    <meta name="description" content="laptops.az — Azərbaycanda laptop satışında lider. Bizim haqqımızda ətraflı məlumat üçün bu səhifəyə baxın." />
+    <meta name="keywords" content="laptops.az haqqımızda, laptop mağazası, kompüter satışı, texnologiya şirkəti" />
+    <meta property="og:title" content="Haqqımızda | laptops.az" />
+    <meta property="og:description" content="laptops.az – keyfiyyət, etibar və sərfəli qiymət prinsipləri ilə fəaliyyət göstərir." />
+    <meta property="og:image" content="@(Url.Content("~/images/seo/about.jpg"))" />
     }
     else if (isContactPage)
     {
-        <title>Əlaqə | laptops.az</title>
-        <meta name="description" content="Bizimlə əlaqə saxlamaq üçün telefon nömrəmiz, e-mail və ünvan məlumatlarımız buradadır." />
-        <meta name="keywords" content="əlaqə, laptops.az, bizimlə əlaqə, laptop mağazası əlaqə, kompüter satış əlaqə" />
-        <meta property="og:title" content="Əlaqə | laptops.az" />
-        <meta property="og:description" content="laptops.az ilə əlaqə saxlamaq üçün məlumatlar." />
-        <meta property="og:image" content="@(Url.Content("~/images/seo/contact.jpg"))" />
+    <title>Əlaqə | laptops.az</title>
+    <meta name="description" content="Bizimlə əlaqə saxlamaq üçün telefon nömrəmiz, e-mail və ünvan məlumatlarımız buradadır." />
+    <meta name="keywords" content="əlaqə, laptops.az, bizimlə əlaqə, laptop mağazası əlaqə, kompüter satış əlaqə" />
+    <meta property="og:title" content="Əlaqə | laptops.az" />
+    <meta property="og:description" content="laptops.az ilə əlaqə saxlamaq üçün məlumatlar." />
+    <meta property="og:image" content="@(Url.Content("~/images/seo/contact.jpg"))" />
     }
     else
     {
-        <title>laptops.az</title>
-        <meta name="description" content="laptops.az saytında zəmanətli, orijinal və sərfəli qiymətli laptoplar." />
-        <meta name="keywords" content="laptop, notebook, ucuz laptoplar, texnologiya, elektronika, laptops.az" />
-        <meta property="og:title" content="laptops.az - Laptoplar və Elektronika Məhsulları" />
-        <meta property="og:description" content="Laptop, notebook və digər texnologiya məhsullarını rəsmi zəmanətlə alın." />
-        <meta property="og:image" content="@(Url.Content("~/images/logo.png"))" />
+    <title>laptops.az</title>
+    <meta name="description" content="laptops.az saytında zəmanətli, orijinal və sərfəli qiymətli laptoplar." />
+    <meta name="keywords" content="laptop, notebook, ucuz laptoplar, texnologiya, elektronika, laptops.az" />
+    <meta property="og:title" content="laptops.az - Laptoplar və Elektronika Məhsulları" />
+    <meta property="og:description" content="Laptop, notebook və digər texnologiya məhsullarını rəsmi zəmanətlə alın." />
+    <meta property="og:image" content="@(Url.Content("~/images/logo.png"))" />
     }
 
     <meta name="robots" content="index, follow" />
@@ -72,31 +72,23 @@
     <link rel="canonical" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
     <link rel="shortcut icon" href="~/assets/images/Laptops.az-Logo.png">
 
-    <!-- fraimwork - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
 
-    <!-- icon font - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/stroke-gap-icons.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/icofont.css">
 
-    <!-- animation - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
 
-    <!-- carousel - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/slick-theme.css">
 
-    <!-- popup - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
 
-    <!-- jquery-ui - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/jquery-ui.css">
 
-    <!-- select option - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/nice-select.css">
 
-    <!-- custom - css include -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/shorts.css">
     <style>
@@ -206,23 +198,14 @@
 
 <body>
 
-<!-- body_wrap - start -->
 <div class="body_wrap">
 
-    <!-- backtotop - start -->
     <div class="backtotop">
         <a href="#" class="scroll">
             <i class="far fa-arrow-up"></i>
         </a>
     </div>
-    <!-- backtotop - end -->
-
-    <!-- preloader - start -->
     <div id="preloader"></div>
-    <!-- preloader - end -->
-
-    <!-- header_section - start
-    ================================================== -->
     <header class="header_section">
         <div class="header_top">
             <div class="container">
@@ -351,14 +334,7 @@
             </div>
         </div>
     </header>
-    <!-- header_section - end
-    ================================================== -->
-
-    <!-- main body - start
-    ================================================== -->
-@RenderBody()
-    <!-- footer_section - start
-    ================================================== -->
+    @RenderBody()
     <footer class="footer_section">
         <div class="footer_bottom">
             <div class="container">
@@ -378,60 +354,45 @@
             </div>
         </div>
     </footer>
-    <!-- footer_section - end
-    ================================================== -->
-
 </div>
-<!-- body_wrap - end -->
-
-<!-- fraimwork - jquery include -->
 <script src="~/assets/js/jquery.min.js"></script>
 <script src="~/assets/js/popper.min.js"></script>
 <script src="~/assets/js/bootstrap.min.js"></script>
 <script src="~/assets/js/bootstrap5-dropdown-ml-hack.js"></script>
 
-<!-- carousel - jquery include -->
 <script src="~/assets/js/slick.min.js"></script>
 
-<!-- popup - jquery include -->
 <script src="~/assets/js/magnific-popup.min.js"></script>
 
-<!-- jquery-ui - jquery include -->
 <script src="~/assets/js/jquery-ui.js"></script>
 
-<!-- off canvas sidebar - jquery include -->
 <script src="~/assets/js/mCustomScrollbar.js"></script>
 
-<!-- select option - jquery include -->
 <script src="~/assets/js/nice-select.min.js"></script>
 
-<!-- countdown timer - jquery include -->
 <script src="~/assets/js/countdown.js"></script>
 
-<!-- counter up - jquery include -->
 <script src="~/assets/js/counterup.min.js"></script>
 <script src="~/assets/js/waypoints.min.js"></script>
 
-<!-- custom - jquery include -->
 <script src="~/assets/js/main.js"></script>
 <script>
     $(document).ready(function () {
 
         $("#searchInput").on("input", function () {
             var query = $(this).val().trim();
-            var resultsDiv = $("#liveSearchResults"); // resultsDiv-i burada təyin edək
+            var resultsDiv = $("#liveSearchResults");
 
-            if (query.length < 2) { // Axtarış üçün minimum simvol sayı
-                resultsDiv.stop(true, true).fadeOut('fast', function() { $(this).empty(); }); // Yumşaq gizlət və təmizlə
+            if (query.length < 2) {
+                resultsDiv.stop(true, true).fadeOut('fast', function() { $(this).empty(); });
                 return;
             }
 
             $.ajax({
-                url: '@Url.Action("LiveSearch", "Shop")', // Controller və Action adlarınızı yoxlayın
+                url: '@Url.Action("LiveSearch", "Shop")',
                 type: 'GET',
                 data: { searchTerm: query },
                 success: function (data) {
-                    // resultsDiv artıq yuxarıda təyin edilib
                     if (!data || data.length === 0) {
                         resultsDiv.html("<ul><li class='no-results'>Məhsul tapılmadı</li></ul>").stop(true, true).fadeIn('fast');
                         return;
@@ -439,14 +400,12 @@
 
                     var html = "<ul>";
                     data.forEach(function (item) {
-                        // Şəkil URL-ni yoxlayın, əgər yoxdursa standart şəkil istifadə edin
-                        var imageUrl = item.imageUrl ? item.imageUrl : '/images/default-product-image.png'; // Bu yolu öz standart şəklinizə dəyişin
+                        var imageUrl = item.imageUrl ? item.imageUrl : '/images/default-product-image.png';
 
-                        // Qiyməti formatlayın (NaN olmaması üçün yoxlama əlavə edə bilərsiniz)
                         var priceValue = parseFloat(item.price);
                         var formattedPrice = !isNaN(priceValue) ? priceValue.toFixed(2) + " AZN" : "Qiymət göstərilməyib";
 
-                        html += "<li data-id='" + item.id + "' data-name='" + $("<div>").text(item.name).html() + "' class='live-search-item'>"; // item.name-i HTML encode etmək üçün
+                        html += "<li data-id='" + item.id + "' data-name='" + $("<div>").text(item.name).html() + "' data-slug='" + item.slug + "' class='live-search-item'>";
                         html += "<img src='/Uploads/" + imageUrl + "' alt='" + $("<div>").text(item.name).html() + "' class='live-search-item-image' />";
                         html += "<div class='live-search-item-details'>";
                         html += "<div class='live-search-item-name'>" + $("<div>").text(item.name).html() + "</div>";
@@ -454,7 +413,7 @@
                         html += "</div></li>";
                     });
                     html += "</ul>";
-                    resultsDiv.html(html).stop(true, true).fadeIn('fast'); // Yumşaq göstər
+                    resultsDiv.html(html).stop(true, true).fadeIn('fast');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error("Canlı axtarış xətası:", textStatus, errorThrown);
@@ -471,32 +430,24 @@
             $("#searchInput").val(selectedName);
             $("#liveSearchResults").stop(true, true).fadeOut('fast', function() { $(this).empty(); });
 
-            if (productId) {
-                window.location.href = '/ProductDetail/Index/' + slug; // Yönləndirmə URL-inizi yoxlayın
+            if (productId && slug) {
+                window.location.href = '/ProductDetail?slug=' + slug;
             }
         });
 
-        // Form submit edildikdə səhifənin yenilənməsinin qarşısını al
+        // Form submit edildikdə
         $("#searchForm").on("submit", function (e) {
-            // Bu sətir səhifənin yenilənməsinin qarşısını alır ki, biz öz yönləndirməmizi edə bilək
             e.preventDefault();
-
-            // Axtarış qutusundakı mətni götürürük və başındakı/sonundakı boşluqları silirik
             var axtarisSozu = $("#searchInput").val().trim();
-
-            // Əgər axtarış xanasına nəsə yazılıbsa...
             if (axtarisSozu.length > 0) {
-                // ...istifadəçini Mağaza səhifəsinə yönləndiririk.
-                // Axtarılan sözü isə URL-in sonuna ?axtaris=... şəklində əlavə edirik.
                 window.location.href = '/Shop?search=' + encodeURIComponent(axtarisSozu);
             }
         });
 
-        // Axtarış qutusundan və ya nəticələrdən kənara kliklədikdə nəticələri gizlət
+        // Axtarış qutusundan kənara kliklədikdə
         $(document).on("click", function(event) {
             var resultsDiv = $("#liveSearchResults");
-            // Hədəf elementin özü və ya searchForm-un içində deyilsə
-            if (!$(event.target).closest('#searchForm').length && !$(event.target).is('#liveSearchResults') && !$(event.target).closest('#liveSearchResults').length) {
+            if (!$(event.target).closest('#searchForm').length) {
                 if (resultsDiv.is(":visible")) {
                     resultsDiv.stop(true, true).fadeOut('fast');
                 }

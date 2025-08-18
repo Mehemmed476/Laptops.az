@@ -50,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/LaptopsAz.DL/Repositories/Abstractions/IRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/Controllers/HomeController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/ViewComponents/CategoryViewComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/Views/Home/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LaptopsAz.PL/Views/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -78,6 +79,7 @@
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.LaptopsAz.PL: IIS Express.executor&quot;: &quot;Run&quot;,
     &quot;.NET Launch Settings Profile.LaptopsAz.PL: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.LaptopsAz.PL: https.executor&quot;: &quot;Debug&quot;,
     &quot;Publish to folder.Publish LaptopsAz.PL to folder.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -197,6 +199,10 @@
       <workItem from="1754176205158" duration="21000" />
       <workItem from="1754324154051" duration="409000" />
       <workItem from="1754324851782" duration="10934000" />
+      <workItem from="1754630148851" duration="3815000" />
+      <workItem from="1754905271352" duration="792000" />
+      <workItem from="1755076638620" duration="4782000" />
+      <workItem from="1755469998546" duration="1598000" />
     </task>
     <task id="LOCAL-00001" summary="add services">
       <option name="closed" value="true" />
@@ -269,19 +275,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LaptopsAz.BL/Services/Implementations/ProductService.cs</url>
-          <line>54</line>
-          <properties documentPath="C:\Users\Mehemmed\Desktop\LaptopsAzRepo\LaptopsAz\LaptopsAz.BL\Services\Implementations\ProductService.cs" containingFunctionPresentation="Method 'CreateProductAsync'">
-            <startOffsets>
-              <option value="2546" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2547" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LaptopsAz.PL/Areas/MexfiErazi/Controllers/ProductSpecController.cs</url>
           <line>37</line>
           <properties documentPath="C:\Users\Mehemmed\Desktop\Programming\Projects\LaptopsAzRepo\LaptopsAz\LaptopsAz.PL\Areas\MexfiErazi\Controllers\ProductSpecController.cs" containingFunctionPresentation="Method 'Update'">
@@ -332,6 +325,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LaptopsAz.PL/Areas/MexfiErazi/Controllers/ProductController.cs</url>
+          <line>132</line>
+          <properties documentPath="C:\Users\Mehemmed\Desktop\Programming\Projects\LaptopsAzRepo\LaptopsAz\LaptopsAz.PL\Areas\MexfiErazi\Controllers\ProductController.cs" containingFunctionPresentation="Method 'Update'">
+            <startOffsets>
+              <option value="5128" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5129" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
           <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />

@@ -13,6 +13,7 @@ public class ProductPutDto
     public decimal? DiscountPrice { get; set; }
     public Guid CategoryID { get; set; }
     public int Stock { get; set; }
+    public string Slug { get; set; }
     public string Brand { get; set; }
     public IFormFile? Image { get; set; }
     public ICollection<IFormFile>? Images { get; set; }

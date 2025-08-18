@@ -92,9 +92,8 @@
                                             <label asp-for="Image" for="file-upload" class="form-label">Upload File</label>
                                             <input asp-for="Image" class="form-control" type="file" id="file-upload" multiple>
                                             <span asp-validation-for="Image" style="color: mediumpurple"></span>
-
+                                            <input type="hidden" asp-for="Slug" />             
                                         </div>
-
                                     </div>
                                     <div class="d-grid gap-2 mt-5">
                                         <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Update</button>

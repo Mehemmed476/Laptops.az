@@ -31,7 +31,7 @@ public class SitemapController : Controller
         var products = await _productService.GetAllProducts();
         foreach (var product in products)
         {
-            urls.Add($"{baseUrl}/productdetail/index/{product.Id}");
+            urls.Add($"{baseUrl}/productdetail/index/{product.Slug}");
         }
 
         var sitemapXml = GenerateSitemapXml(urls);
