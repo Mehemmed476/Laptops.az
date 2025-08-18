@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # YENİ EKLENEN SATIR: Dockerfile'ın konumunu belirtiyoruz.
-          file: ./LaptopsAzRepo/Dockerfile
+          file: ./LaptopsAz/Dockerfile
           context: . # Build context'i ana dizin olarak bırakıyoruz.
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/laptopsaz:latest
