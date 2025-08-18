@@ -1,0 +1,45 @@
+# .github/workflows/deploy.yml
+
+name: Deploy LaptopsAz to VPS
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu Kopyala
+        uses: actions/checkout@v4
+
+      - name: Docker Hub'a Giriş Yap
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker Imajını Build Et ve Push'la
+        uses: docker/build-push-action@v5
+        with:
+          # YENİ EKLENEN SATIR: Dockerfile'ın konumunu belirtiyoruz.
+          file: ./LaptopsAzSolution/Dockerfile
+          context: . # Build context'i ana dizin olarak bırakıyoruz.
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/laptopsaz:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sunucuya Bağlan ve Deploy Et
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ~/laptopsaz-deploy
+            docker-compose pull laptopsaz-app
+            docker-compose up -d --no-deps laptopsaz-app
+            docker image prune -f
