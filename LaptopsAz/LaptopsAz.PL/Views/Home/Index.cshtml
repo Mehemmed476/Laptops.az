@@ -2,6 +2,7 @@
 @model HomeVM;
 
 <main>
+    <h1>IBO GEYDII</h1>
     <section class="slider_section">
         <div class="main_slider" data-slick='{"arrows": false}'>
             @foreach (var slider in Model.SliderItems)
@@ -37,7 +38,7 @@
         <div class="shorts-gallery">
             <div class="shorts-container">
                 <div class="shorts-wrapper">
-                    @foreach(var item21 in Model.Shorts)
+                    @foreach (var item21 in Model.Shorts)
                     {
                         <div class="short-item">
                             @* data-src kullanarak gerçek URL'yi geciktiriyoruz *@
@@ -46,7 +47,7 @@
                                 title="@item21.Title"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                loading="lazy" 
+                                loading="lazy"
                                 allowfullscreen>
                             </iframe>
                             <p class="short-title">@item21.Title</p>
@@ -117,34 +118,34 @@
                             @foreach (var newProducts in Model.NewProducts)
                             {
                                 <div class="slider_item">
-                                <div class="product_layout1">
-                                    <div class="item_image">
-                                        <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@newProducts.Slug">
-                                        <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
-                                        <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
-                                        </a>
-                                    </div>
-                                    <div class="item_content">
-                                        <h3 class="item_title">
-                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@newProducts.Slug">@newProducts.ProductName</a>
-                                        </h3>
-                                        <ul class="rating_star ul_li">
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                        </ul>
-                                        <div class="item_price">
-                                            <span>₼ @newProducts.DiscountPrice</span>
-                                            <del>₼ @newProducts.Price</del>
+                                    <div class="product_layout1">
+                                        <div class="item_image">
+                                            <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@newProducts.Slug">
+                                                <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
+                                                <img src="~/Uploads/@newProducts.ImageURL" alt="laptops.az" loading="lazy">
+                                            </a>
                                         </div>
-                                        <ul class="item_btns_group ul_li">
-                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@newProducts.Slug">@ViewData["Text34"]</a></li>
-                                        </ul>
+                                        <div class="item_content">
+                                            <h3 class="item_title">
+                                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@newProducts.Slug">@newProducts.ProductName</a>
+                                            </h3>
+                                            <ul class="rating_star ul_li">
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                            </ul>
+                                            <div class="item_price">
+                                                <span>₼ @newProducts.DiscountPrice</span>
+                                                <del>₼ @newProducts.Price</del>
+                                            </div>
+                                            <ul class="item_btns_group ul_li">
+                                                <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@newProducts.Slug">@ViewData["Text34"]</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>
@@ -179,30 +180,30 @@
                                 <div class="product_layout1">
                                     <div class="item_image">
                                         <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item10.Slug">
-                                        <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
-                                        <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
+                                            <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
+                                            <img src="~/Uploads/@item10.ImageURL" alt="Laptops.az" loading="lazy">
                                         </a>
                                     </div>
-                                <div class="item_content">
-                                    <h3 class="item_title">
-                                        <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item10.Slug">@item10.ProductName</a>
-                                    </h3>
-                                    <ul class="rating_star ul_li">
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                    </ul>
-                                    <div class="item_price">
-                                        <span> ₼ @item10.DiscountPrice</span>
-                                        <del> ₼ @item10.Price</del>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item10.Slug">@item10.ProductName</a>
+                                        </h3>
+                                        <ul class="rating_star ul_li">
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                        <div class="item_price">
+                                            <span> ₼ @item10.DiscountPrice</span>
+                                            <del> ₼ @item10.Price</del>
+                                        </div>
+                                        <ul class="item_btns_group ul_li">
+                                            <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item10.Slug">@ViewData["Text34"]</a></li>
+                                        </ul>
                                     </div>
-                                    <ul class="item_btns_group ul_li">
-                                        <li><a class="addtocart_btn" asp-controller="Cart" asp-action="AddToCart" asp-route-slug="@item10.Slug">@ViewData["Text34"]</a></li>
-                                    </ul>
                                 </div>
-                            </div>
                             }
                         </div>
                         <div class="carousel_nav">
@@ -220,8 +221,8 @@
                                 <div class="product_layout1">
                                     <div class="item_image">
                                         <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item11.Slug">
-                                        <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
-                                        <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
+                                            <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
+                                            <img src="~/Uploads/@item11.ImageURL" alt="Laptops.az" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="item_content">
@@ -258,13 +259,13 @@
                         <div class="new_product_carousel" data-slick='{"dots": false}'>
                             @foreach (var item12 in Model.NewestProducts)
                             {
-                               <div class="product_layout1">
-                                   <div class="item_image">
-                                       <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item12.Slug">
-                                           <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
-                                           <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
-                                       </a>
-                                   </div>
+                                <div class="product_layout1">
+                                    <div class="item_image">
+                                        <a class="image_wrap" asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item12.Slug">
+                                            <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
+                                            <img src="~/Uploads/@item12.ImageURL" alt="Laptops.az" loading="lazy">
+                                        </a>
+                                    </div>
                                     <div class="item_content">
                                         <h3 class="item_title">
                                             <a asp-controller="ProductDetail" asp-action="Index" asp-route-slug="@item12.Slug">@item12.ProductName</a>
@@ -366,8 +367,8 @@
 
                     <div class="newsletter_form">
                         <form method="post">
-                        <input asp-for="NewstellerPostDto.PhoneNumber" type="number" placeholder="@ViewData["Text5"]">
-                        <button type="submit" class="btn btn_danger">@ViewData["Text8"]</button>
+                            <input asp-for="NewstellerPostDto.PhoneNumber" type="number" placeholder="@ViewData["Text5"]">
+                            <button type="submit" class="btn btn_danger">@ViewData["Text8"]</button>
                         </form>
                     </div>
 
@@ -375,7 +376,7 @@
             </div>
         </div>
     </section>
-    </main>
+</main>
       <script>
     document.addEventListener('DOMContentLoaded', () => {
         const shortsGallery = document.querySelector('.shorts-gallery');
