@@ -18,4 +18,6 @@ public class ShopProductsVM
     public int TotalPagesForList => (int)Math.Ceiling((decimal)TotalCount / PageSizeForList);
     public int TotalPagesForGrid => (int)Math.Ceiling((decimal)TotalCount / PageSizeForGrid);
     public string? CurrentSearch { get; set; }
+    public decimal? CurrentMinPrice { get; set; }
+    public decimal? CurrentMaxPrice { get; set; }
 }
